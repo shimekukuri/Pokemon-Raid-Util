@@ -26,14 +26,16 @@ export default function Layout({ children }: { children: ReactNode }) {
 
       <Drawer drawerItems={drawerItems}>
         <div className="min-h-screen bg-neutral-content flex justify-between flex-col">
-          <header className="h-12 bg-base-300 flex justify-between items-center px-4">
+          <header className="h-16 bg-base-300 flex justify-between items-center px-4">
             <div className={`${oswald.className}`}>Daisy UI Example</div>
-            <button
-              className={`${oswald.className} btn btn-primary`}
-              onClick={() => setDSTate((prev: boolean) => !prev)}
-            >
-              Menu
-            </button>
+            <div>
+              <button
+                className={`${oswald.className} btn btn-primary`}
+                onClick={() => setDSTate((prev: boolean) => !prev)}
+              >
+                Menu
+              </button>
+            </div>
           </header>
           <main className="bg-blue-500">{children}</main>
           <footer className="bg-base-300 h-12 shadow-2xl shadow-secondary">
