@@ -1,8 +1,14 @@
 import React, { createContext, ReactNode, useState } from 'react';
 
+interface context {
+  dState: boolean;
+  setDState: Function;
+}
+
+export const drawerContext = createContext(undefined);
+
 export default function DrawerProvider({ children }: { children: ReactNode }) {
   const [dState, setDSTate] = useState(false);
-  const drawerContext = createContext({});
   const value = { dState, setDSTate };
 
   return (

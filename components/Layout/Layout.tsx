@@ -7,6 +7,12 @@ const oswald = Oswald({ weight: '700', subsets: ['latin'] });
 const ssp = Source_Serif_Pro({ weight: '400', subsets: ['latin'] });
 
 export default function Layout({ children }: { children: ReactNode }) {
+  const drawerItems = [
+    {
+      title: 'test1',
+    },
+  ];
+
   return (
     <>
       <Head>
@@ -16,7 +22,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Drawer drawerState={true}>
+      <Drawer drawerItems={drawerItems}>
         <div className="min-h-screen bg-neutral-content flex justify-between flex-col">
           <header className="h-12 bg-primary flex justify-between items-center px-4">
             <div className={`${oswald.className}`}>Daisy UI Example</div>
