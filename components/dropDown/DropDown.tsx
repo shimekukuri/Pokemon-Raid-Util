@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 
 export function DropDownMenu({ children }: { children: React.ReactNode }) {
+  console.log(children);
   return (
     <div className="dropdown dropdown-end">
       <label tabIndex={0} className="btn m-1">
@@ -10,10 +11,16 @@ export function DropDownMenu({ children }: { children: React.ReactNode }) {
         tabIndex={0}
         className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
       >
-        <li>
-          <a>test</a>
-        </li>
+        {children}
       </ul>
     </div>
+  );
+}
+
+export function DropDownItem({ children }: { children: React.ReactNode }) {
+  return (
+    <li>
+      <a>{children}</a>
+    </li>
   );
 }
