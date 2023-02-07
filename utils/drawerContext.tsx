@@ -2,10 +2,15 @@ import React, { createContext, ReactNode, useState } from 'react';
 
 interface context {
   dState: boolean;
-  setDState: Function;
+  setDState?: React.Dispatch<React.SetStateAction<boolean>> | undefined;
 }
 
-export const drawerContext = createContext(undefined);
+const inital: context = {
+  dState: false,
+  setDState: undefined,
+};
+
+export const drawerContext = createContext(inital);
 
 export default function DrawerProvider({ children }: { children: ReactNode }) {
   const [dState, setDSTate] = useState(false);

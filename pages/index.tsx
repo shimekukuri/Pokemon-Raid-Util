@@ -11,15 +11,8 @@ import { drawerContext } from '@/utils/drawerContext';
 const inter = Inter({ subsets: ['latin'] });
 
 export default function Home() {
-  const { dState, setDSTate } = useContext(drawerContext);
-
-  const handdleToggleState = () => {
-    setDSTate((prev: boolean) => !prev);
-  };
-
   return (
     <Layout>
-      <button onClick={handdleToggleState}>Click</button>
       <div>asdfasdkfja</div>
     </Layout>
   );
