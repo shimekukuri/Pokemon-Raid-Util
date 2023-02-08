@@ -1,9 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react';
 
-export default function Card1() {
+export default function Card1({ title }: { title: string }) {
   return (
-    <div className="card w-96 shadow-xl bg-base-100 image-full hover:animate-scale-up">
+    <div className="card flex-1 shadow-xl bg-base-100 image-full hover:animate-scale-up">
       <figure>
         <img
           src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
@@ -12,7 +12,7 @@ export default function Card1() {
       </figure>
       <div className="card-body">
         <h2 className="card-title">
-          Shoes!
+          {title}
           <div className="badge badge-secondary">NEW</div>
         </h2>
         <p>Wooo like look at these shoes dude</p>

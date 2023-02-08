@@ -46,6 +46,9 @@ export default function Drawer({
           >
             Close
           </button>
+          <li onClick={() => router.push('/')}>
+            <a>Home</a>
+          </li>
           {drawerItems
             ? drawerItems.map((x, i) => {
                 return (

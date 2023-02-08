@@ -48,9 +48,7 @@ export default function Layout({ children }: { children: ReactNode }) {
       <Drawer drawerItems={drawerItems} footer={drawerFooter}>
         <div className="min-h-screen bg-secondary flex justify-between flex-col">
           <header className="h-16 flex justify-between items-center px-4">
-            <div
-              className={`${oswald.className} font-bold primary-content flex-1`}
-            >
+            <div className={`${oswald.className}  text-white flex-1`}>
               Pokemon Raid Utility
             </div>
 
@@ -61,8 +59,12 @@ export default function Layout({ children }: { children: ReactNode }) {
               Menu
             </button>
           </header>
-          <main className="bg-blue-500">{children}</main>
-          <footer className="bg-base-300 h-16 shadow-2xl shadow-secondary flex justify-center items-center"></footer>
+          <main className="flex-1 px-4 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {children}
+          </main>
+          <footer className="bg-base-300 h-16 shadow-2xl shadow-secondary flex justify-center items-center mt-4">
+            Copyright James Hutchinson 2023
+          </footer>
         </div>
       </Drawer>
     </>
