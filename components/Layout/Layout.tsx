@@ -46,8 +46,8 @@ export default function Layout({ children }: { children: ReactNode }) {
       </Head>
 
       <Drawer drawerItems={drawerItems} footer={drawerFooter}>
-        <div className="min-h-screen bg-neutral-content flex justify-between flex-col">
-          <header className="h-16 bg-base-300 flex justify-between items-center px-4">
+        <div className="min-h-screen bg-secondary flex justify-between flex-col">
+          <header className="h-16 flex justify-between items-center px-4">
             <div
               className={`${oswald.className} font-bold primary-content flex-1`}
             >
