@@ -5,6 +5,7 @@ import Drawer from '../drawer/Drawer';
 import { drawerContext } from '@/utils/drawerContext';
 import Select from '../select/Select';
 import { themeContext } from '@/utils/themeContext';
+import { drawerItems } from '@/utils/drawerUtilitys/drawerItems';
 
 const oswald = Oswald({ weight: '700', subsets: ['latin'] });
 const ssp = Source_Serif_Pro({ weight: '400', subsets: ['latin'] });
@@ -20,12 +21,6 @@ export default function Layout({ children }: { children: ReactNode }) {
     }
     return arr;
   };
-
-  const drawerItems = [
-    {
-      title: 'test',
-    },
-  ];
 
   const drawerFooter = (
     <Select
@@ -47,9 +42,9 @@ export default function Layout({ children }: { children: ReactNode }) {
 
       <Drawer drawerItems={drawerItems} footer={drawerFooter}>
         <div className="min-h-screen bg-secondary flex justify-between flex-col">
-          <header className="h-16 flex justify-between items-center px-4">
+          <header className="h-16 flex justify-between bg-accent-focus items-center px-4 sticky top-0 z-50">
             <div className={`${oswald.className}  text-white flex-1`}>
-              Pokemon Raid Utility
+              POKEMON RAID UTILITY
             </div>
 
             <button
@@ -59,7 +54,7 @@ export default function Layout({ children }: { children: ReactNode }) {
               Menu
             </button>
           </header>
-          <main className="flex-1 px-4 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <main className="flex-1 px-4 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4 relative">
             {children}
           </main>
           <footer className="bg-base-300 h-16 shadow-2xl shadow-secondary flex justify-center items-center mt-4">
