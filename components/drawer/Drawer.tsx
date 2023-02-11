@@ -3,10 +3,9 @@ import { drawerContext } from '@/utils/drawerContext';
 import { themeContext } from '@/utils/themeContext';
 import { useRouter } from 'next/router';
 
-interface drawerItems {
+export interface drawerItemsInterface {
   title: string;
-  href?: string;
-  nextRoute?: string;
+  route: string;
 }
 
 export default function Drawer({
@@ -15,7 +14,7 @@ export default function Drawer({
   footer,
 }: {
   children: ReactNode;
-  drawerItems?: drawerItems[];
+  drawerItems?: drawerItemsInterface[];
   footer: ReactNode;
 }) {
   const { dState, setDSTate } = useContext(drawerContext);
@@ -50,10 +49,10 @@ export default function Drawer({
             <a>Home</a>
           </li>
           {drawerItems
-            ? drawerItems.map((x, i) => {
+            ? drawerItems.map(({ title, route }, i) => {
                 return (
-                  <li key={i} onClick={() => router.push(x.title)}>
-                    <a>{x.title}</a>
+                  <li key={i} onClick={() => router.push(route)}>
+                    <a>{title}</a>
                   </li>
                 );
               })

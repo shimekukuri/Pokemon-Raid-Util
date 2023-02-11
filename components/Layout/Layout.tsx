@@ -54,7 +54,7 @@ export default function Layout({ children }: { children: ReactNode }) {
               Menu
             </button>
           </header>
-          <main className="flex-1 px-4 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4 relative">
+          <main className="flex-1 px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-4 mt-4 relative">
             {children}
           </main>
           <footer className="bg-base-300 h-16 shadow-2xl shadow-secondary flex justify-center items-center mt-4">

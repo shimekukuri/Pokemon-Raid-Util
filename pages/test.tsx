@@ -7,11 +7,17 @@ export default function Test() {
   const [pokedata, setPokeData] = useState([]);
 
   useEffect(() => {
-    fetch('https://pokeapi.co/api/v2/type/fire/')
+    fetch('/api/test/getPost', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ pokeName: 'clarify' }),
+    })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data.pokemon);
-        setPokeData(data.pokemon);
+        console.log(data);
+        setPokeData(data);
         setLoading((prev) => false);
       })
       .catch((err) => console.error(err));
@@ -24,8 +30,30 @@ export default function Test() {
           <progress className="progress w-56 absolute"></progress>
         </div>
       ) : (
-        pokedata.map((x, i) => {
-          return <Card1 key={i} title={x.pokemon.name}></Card1>;
+        [
+          pokedata,
+          pokedata,
+          pokedata,
+          pokedata,
+          pokedata,
+          pokedata,
+          pokedata,
+          pokedata,
+          pokedata,
+          pokedata,
+          pokedata,
+          pokedata,
+          pokedata,
+          pokedata,
+          pokedata,
+          pokedata,
+          pokedata,
+          pokedata,
+          pokedata,
+          pokedata,
+        ].map((x, i) => {
+          console.log(x);
+          return <Card1 key={i} title={'Clafairy'} image={x.body}></Card1>;
         })
       )}
     </Layout>

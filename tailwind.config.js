@@ -13,7 +13,7 @@ module.exports = {
       keyframes: {
         scale: {
           '0%': { transform: 'scale(1.0)' },
-          '100%': { transform: 'scale(1.05)' },
+          '100%': { transform: 'scale(1.03)' },
         },
       },
       animation: {

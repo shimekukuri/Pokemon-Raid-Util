@@ -1,4 +1,4 @@
-interface drawerItemsInterface {
+export interface drawerItemsInterface {
   title: string;
   route: string;
 }
