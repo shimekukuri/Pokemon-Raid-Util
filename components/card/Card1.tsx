@@ -4,9 +4,11 @@ import React from 'react';
 export default function Card1({
   title,
   image,
+  buttonText,
 }: {
   title: string;
   image: string;
+  buttonText: string;
 }) {
   return (
     <div className="card max-h-72 shadow-xl bg-base-100 image-full hover:animate-scale-up">
@@ -24,7 +26,7 @@ export default function Card1({
             <div className="badge badge-outline ">Fasion</div>
             <div className="badge badge-outline">Products</div>
           </div>
-          <button className="btn btn-primary">Shop Now</button>
+          <button className="btn btn-primary">{buttonText}</button>
         </div>
       </div>
     </div>

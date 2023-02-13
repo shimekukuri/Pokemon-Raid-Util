@@ -53,7 +53,14 @@ export default function Test() {
           pokedata,
         ].map((x, i) => {
           console.log(x);
-          return <Card1 key={i} title={'Clafairy'} image={x.body}></Card1>;
+          return (
+            <Card1
+              key={i}
+              title={'Clafairy'}
+              image={x.body}
+              buttonText="Enter Room"
+            ></Card1>
+          );
         })
       )}
     </Layout>
