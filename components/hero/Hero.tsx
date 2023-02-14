@@ -28,6 +28,10 @@ export default function Hero({ background }: { background?: string }) {
             recomend saving it to your computer or phone, to log in simply copy
             and paste it into the login form and you are ready to go!
           </p>
+          <p className="text-red-800">
+            WARNING YOU WILL NOT BE ABLE TO MAKE MULTIPLE ACCOUNTS ON THE SAME
+            COMPUTER
+          </p>
         </div>
         {account ? (
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
@@ -87,38 +91,4 @@ export default function Hero({ background }: { background?: string }) {
       </div>
     </div>
   );
-}
-
-{
-  /* <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-          <div className="card-body">
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Screen Name</span>
-              </label>
-              <input
-                type="text"
-                placeholder="Screen Name"
-                className="input input-primary"
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Bio</span>
-              </label>
-              <textarea
-                className="textarea textarea-primary"
-                placeholder="Bio"
-              ></textarea>
-              <label className="label">
-                <Link href="/Login" className="label-text-alt link link-hover">
-                  Already have an Account?
-                </Link>
-              </label>
-            </div>
-            <div className="form-control mt-6">
-              <button className="btn btn-primary">Login</button>
-            </div>
-          </div>
-        </div> */
 }
