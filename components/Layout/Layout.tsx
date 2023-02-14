@@ -6,6 +6,7 @@ import { drawerContext } from '@/utils/drawerContext';
 import Select from '../select/Select';
 import { themeContext } from '@/utils/themeContext';
 import { drawerItems } from '@/utils/drawerUtilitys/drawerItems';
+import Navbar from '../navbar/Navbar';
 
 const oswald = Oswald({ weight: '700', subsets: ['latin'] });
 const ssp = Source_Serif_Pro({ weight: '400', subsets: ['latin'] });
@@ -42,18 +43,7 @@ export default function Layout({ children }: { children: ReactNode }) {
 
       <Drawer drawerItems={drawerItems} footer={drawerFooter}>
         <div className="min-h-screen bg-secondary flex justify-between flex-col">
-          <header className="h-16 flex justify-between bg-accent-focus items-center px-4 sticky top-0 z-50">
-            <div className={`${oswald.className}  text-white flex-1`}>
-              POKEMON RAID UTILITY
-            </div>
-
-            <button
-              className={`${oswald.className} btn btn-primary font-bold`}
-              onClick={() => setDSTate((prev: boolean) => !prev)}
-            >
-              Menu
-            </button>
-          </header>
+          <Navbar title="POKEMON RAID UTILITY" />
           <main className="flex-1 px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-4 mt-4 relative">
             {children}
           </main>
@@ -62,6 +52,13 @@ export default function Layout({ children }: { children: ReactNode }) {
           </footer>
         </div>
       </Drawer>
+      <div className="toast">
+        <div className="alert alert-info">
+          <div>
+            <span>New message arrived.</span>
+          </div>
+        </div>
+      </div>
     </>
   );
 }
