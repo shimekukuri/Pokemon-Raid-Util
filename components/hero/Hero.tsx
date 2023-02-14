@@ -18,19 +18,12 @@ export default function Hero({ background }: { background?: string }) {
       }
     >
       <div className="hero-content flex-col lg:flex-row-reverse">
-        <div className="text-center lg:text-left bg-secondary rounded-lg bg-opacity-90 p-4 shadow-xl">
+        <div className="text-center lg:text-left bg-primary rounded-lg bg-opacity-90 p-4 shadow-xl lg:p-12">
           <h1 className="text-5xl font-bold">Register!</h1>
           <p>
-            This website does not use traditional forms of registration, and
-            also does not save any of your data to a database! You can keep your
-            data and profile with you, but you are also responsible for not
-            losing it :) Upon logout you will be provided with a hash, I
-            recomend saving it to your computer or phone, to log in simply copy
-            and paste it into the login form and you are ready to go!
-          </p>
-          <p className="text-red-800">
-            WARNING YOU WILL NOT BE ABLE TO MAKE MULTIPLE ACCOUNTS ON THE SAME
-            COMPUTER
+            This website does not use traditional forms of registration you keep
+            your data and profile with you, make sure to save your hash on
+            logout!
           </p>
         </div>
         {account ? (
@@ -56,7 +49,7 @@ export default function Hero({ background }: { background?: string }) {
                 ></textarea>
                 <label className="label">
                   <a onClick={() => setAccount((prev) => !prev)}>
-                    Already Have an Account?
+                    Already have an account?
                   </a>
                 </label>
               </div>
