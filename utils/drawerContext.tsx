@@ -10,7 +10,7 @@ const inital: context = {
   setDState: undefined,
 };
 
-export const drawerContext = createContext(inital);
+export const drawerContext = createContext<context>(inital);
 
 export default function DrawerProvider({ children }: { children: ReactNode }) {
   const [dState, setDSTate] = useState(false);

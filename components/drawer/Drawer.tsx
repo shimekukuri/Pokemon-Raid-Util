@@ -17,7 +17,7 @@ export default function Drawer({
   drawerItems?: drawerItemsInterface[];
   footer: ReactNode;
 }) {
-  const { dState, setDSTate } = useContext(drawerContext);
+  const { dState, setDSTate } = useContext<any>(drawerContext);
   const { themeState } = useContext(themeContext);
   const router = useRouter();
 
