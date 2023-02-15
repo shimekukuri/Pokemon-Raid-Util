@@ -23,6 +23,7 @@ export default function Drawer({
 
   useEffect(() => {
     setDSTate(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
