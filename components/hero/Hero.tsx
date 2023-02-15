@@ -21,9 +21,11 @@ export default function Hero({ background }: { background?: string }) {
         <div className="text-center lg:text-left bg-primary rounded-lg bg-opacity-90 p-4 shadow-xl lg:p-12">
           <h1 className="text-5xl font-bold">Register!</h1>
           <p>
-            This website does not use traditional forms of registration you keep
-            your data and profile with you, make sure to save your hash on
-            logout!
+            Welcome, this tool is for Poke Masters one stop shop for everything
+            raid related in Pokemon Scarlet and Violet. Get around that pesky
+            bad board system and post your own raids in real time with Instant
+            Chatting. Create rules for your rooms and boot people when needed.
+            Stay safe and make good friends!
           </p>
         </div>
         {account ? (
@@ -31,22 +33,33 @@ export default function Hero({ background }: { background?: string }) {
             <div className="card-body">
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Screen Name</span>
+                  <span className="label-text">Email</span>
                 </label>
                 <input
-                  type="text"
-                  placeholder="Screen Name"
+                  type="email"
+                  placeholder="Email"
                   className="input input-primary"
                 />
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Bio</span>
+                  <span className="label-text">Password</span>
                 </label>
-                <textarea
-                  className="textarea textarea-primary"
-                  placeholder="Bio"
-                ></textarea>
+                <input
+                  type="text"
+                  placeholder="Password"
+                  className="input input-primary"
+                />
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Confirm Password</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Confirm Password"
+                  className="input input-primary"
+                />
                 <label className="label">
                   <a onClick={() => setAccount((prev) => !prev)}>
                     Already have an account?
@@ -63,17 +76,28 @@ export default function Hero({ background }: { background?: string }) {
             <div className="card-body">
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Key</span>
+                  <span className="label-text">Email</span>
                 </label>
-                <textarea
-                  className="textarea textarea-primary"
-                  placeholder="Key"
-                ></textarea>
-                <label className="label">
-                  <a onClick={() => setAccount((prev) => !prev)}>
-                    Register A Profile
-                  </a>
-                </label>
+                <input
+                  type="email"
+                  placeholder="Email"
+                  className="input input-primary"
+                />
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Password</span>
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Password"
+                    className="input input-primary"
+                  />
+                  <label className="label">
+                    <a onClick={() => setAccount((prev) => !prev)}>
+                      Register A Profile
+                    </a>
+                  </label>
+                </div>
               </div>
               <div className="form-control mt-6">
                 <button className="btn btn-primary">Login</button>
