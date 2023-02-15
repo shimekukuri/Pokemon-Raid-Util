@@ -37,29 +37,15 @@ export const themes = {
   winter: 'winter',
 };
 
-interface init {
-  themes: typeof themes;
-  themeState: string;
-  setThemeState: undefined | Function;
-}
-
-const initial = {
-  themes: themes,
-  themeState: themes.cupcake,
-  setThemeState: undefined,
-};
-
-export const themeContext = createContext(initial);
+export const themeContext = createContext<any>(null);
 
 export default function ThemeProvider({ children }: { children: ReactNode }) {
-  const [themeState, setThemeState] = useState(initial);
-  const value = {
+  const [themeState, setThemeState] = useState();
+  const meep = {
     themes,
     themeState,
     setThemeState,
   };
 
-  return (
-    <themeContext.Provider value={value}>{children}</themeContext.Provider>
-  );
+  return <themeContext.Provider value={meep}>{children}</themeContext.Provider>;
 }
