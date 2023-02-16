@@ -1,8 +1,4 @@
-import Head from 'next/head';
-import Image from 'next/image';
 import { Inter } from '@next/font/google';
-import styles from '@/styles/Home.module.css';
-import Card1 from '@/components/card/Card1';
 import Layout from '@/components/Layout/Layout';
 import Hero from '@/components/hero/Hero';
 
