@@ -7,6 +7,7 @@ import Select from '../select/Select';
 import { themeContext } from '@/utils/themeContext';
 import { drawerItems } from '@/utils/drawerUtilitys/drawerItems';
 import Navbar from '../navbar/Navbar';
+import Chatbox from '../chatbox/Chatbox';
 
 const oswald = Oswald({ weight: '700', subsets: ['latin'] });
 const ssp = Source_Serif_Pro({ weight: '400', subsets: ['latin'] });
@@ -52,13 +53,7 @@ export default function Layout({ children }: { children: ReactNode }) {
           </footer>
         </div>
       </Drawer>
-      <div className="toast">
-        <div className="alert alert-info">
-          <div>
-            <span>New message arrived.</span>
-          </div>
-        </div>
-      </div>
+      <Chatbox />
     </>
   );
 }
