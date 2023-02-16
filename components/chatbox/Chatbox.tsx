@@ -19,18 +19,35 @@ export default function Chatbox() {
         isOpen ? '' : 'animate-chat-box-close'
       }`}
     >
+      {isOpen ? (
+        ''
+      ) : (
+        <div className="flex-1" onClick={() => setIsOpen(true)}>
+          <img
+            className="animate-opacity-to-one opacity-0"
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"
+          ></img>
+        </div>
+      )}
       <div
-        className="border-b border-base-300 flex items-center h-9 bg-base-200 rounded-t-xl gap-2 px-2 w-full shadow-primary"
-        onClick={() => setIsOpen(true)}
+        className={`border-b border-base-300 flex items-center h-9 bg-base-200 rounded-t-xl gap-2 px-2 w-full shadow-primary ${
+          isOpen ? '' : 'hidden'
+        }`}
       >
-        <button className="rounded-full bg-error h-3 w-3"></button>
-        <button className="rounded-full bg-accent-focus h-3 w-3"></button>
+        <button
+          className="rounded-full bg-error h-3 w-3"
+          onFocus={() => setIsOpen(false)}
+        ></button>
+        <button
+          className="rounded-full bg-accent-focus h-3 w-3"
+          onFocus={() => setIsOpen(false)}
+        ></button>
         <button
           className="rounded-full bg-accent h-3 w-3"
-          onClick={isOpen ? () => null : () => setIsOpen(false)}
+          onFocus={() => setIsOpen(false)}
         ></button>
       </div>
-      <div className="flex-1 flex-col flex">
+      <div className={`flex-1 flex-col flex ${isOpen ? '' : 'hidden'}`}>
         <div className="flex-1">test</div>
         <div className="flex h-12 bg-base-200 rounded-b-xl">test</div>
       </div>
