@@ -1,0 +1,22 @@
+.mockupWindow {
+  position: relative;
+  overflow: hidden;
+  overflow-x: auto;
+  padding-top: 1.25rem /* 20px */;
+  border-radius: var(--rounded-box, 1rem);
+}
+.mockupWindow pre[data-prefix]:before {
+  content: attr(data-prefix);
+  display: inline-block;
+  text-align: right;
+}
+
+.buttons {
+  margin-bottom: 1rem /* 16px */;
+  display: block;
+  height: 0.75rem /* 12px */;
+  width: 0.75rem /* 12px */;
+  border-radius: 9999px;
+  opacity: 0.3;
+  box-shadow: 1.4em 0, 2.8em 0, 4.2em 0;
+}
