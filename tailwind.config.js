@@ -15,9 +15,18 @@ module.exports = {
           '0%': { transform: 'scale(1.0)' },
           '100%': { transform: 'scale(1.03)' },
         },
+        chatBoxClose: {
+          '0%': { 'border-radius': '0px', height: '16rem', width: '16rem' },
+          '100%': {
+            'border-radius': '9999px',
+            height: '1rem',
+            width: '1rem',
+          },
+        },
       },
       animation: {
         'scale-up': '100ms ease-in forwards scale',
+        'chat-box-close': '500ms ease-out forwards chatBoxClose',
       },
     },
   },
