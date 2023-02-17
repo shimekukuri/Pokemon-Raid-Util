@@ -17,9 +17,9 @@ module.exports = {
         },
         chatBoxClose: {
           '0%': { 'border-radius': '0px', height: '16rem', width: '16rem' },
-          '25%': { height: '16rem', width: '16rem', 'border-radius': '128px' },
-          '50%': { height: '8rem', width: '8rem', 'border-radius': '256px' },
-          '75%': { height: '4rem', width: '4rem', 'border-radius': '512px' },
+          '25%': { height: '16rem', width: '16rem', 'border-radius': '256px' },
+          '50%': { height: '8rem', width: '8rem', 'border-radius': '512px' },
+          '75%': { height: '4rem', width: '4rem', 'border-radius': '1024px' },
           '100%': {
             'border-radius': '9999px',
             height: '3rem',
