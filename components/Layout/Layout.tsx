@@ -2,10 +2,10 @@ import React, { ReactNode, createContext, useState, useContext } from 'react';
 import Head from 'next/head';
 import { Oswald, Source_Serif_Pro } from '@next/font/google';
 import Drawer from '../drawer/Drawer';
-import { drawerContext } from '@/utils/drawerContext';
+import { drawerContext } from '@/Context/drawerContext';
 import Select from '../select/Select';
-import { themeContext } from '@/utils/themeContext';
-import { drawerItems } from '@/utils/drawerUtilitys/drawerItems';
+import { themeContext } from '@/Context/themeContext';
+import { drawerItems } from '@/Context/drawerUtilitys/drawerItems';
 import Navbar from '../navbar/Navbar';
 import Chatbox from '../chatbox/Chatbox';
 

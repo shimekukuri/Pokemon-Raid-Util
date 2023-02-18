@@ -1,6 +1,6 @@
 import React, { ReactNode, useEffect, useContext } from 'react';
-import { drawerContext } from '@/utils/drawerContext';
-import { themeContext } from '@/utils/themeContext';
+import { drawerContext } from '@/Context/drawerContext';
+import { themeContext } from '@/Context/themeContext';
 import { useRouter } from 'next/router';
 
 export interface drawerItemsInterface {
@@ -38,7 +38,7 @@ export default function Drawer({
       <div className="drawer-content">{children}</div>
       <div className="drawer-side">
         <label htmlFor="my-drawer" className="drawer-overlay"></label>
-        <ul className="menu p-4 w-80 bg-base-100 text-base-content">
+        <ul className="menu p-4 w-80 bg-base-100 text-base-content z-50">
           {/* {<!-- Sidebar content here -->} */}
           <button
             className="btn btn-primary"

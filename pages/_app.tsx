@@ -1,7 +1,7 @@
 import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
-import DrawerProvider from '@/utils/drawerContext';
-import ThemeProvider from '@/utils/themeContext';
+import DrawerProvider from '@/Context/drawerContext';
+import ThemeProvider from '@/Context/themeContext';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

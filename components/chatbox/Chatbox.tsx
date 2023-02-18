@@ -1,5 +1,5 @@
-import { drawerContext } from '@/utils/drawerContext';
-import { themeContext } from '@/utils/themeContext';
+import { drawerContext } from '@/Context/drawerContext';
+import { themeContext } from '@/Context/themeContext';
 import React, { useContext, useEffect, useState } from 'react';
 import Toast from '../toast/toast';
 
@@ -15,7 +15,7 @@ export default function Chatbox() {
 
   return (
     <div
-      className={`flex w-64 h-64 rounded-xl absolute right-5 bottom-1 flex-col bg-base-100 shadow-2xl border-secondary border-2 gap-2 ${
+      className={`flex w-64 h-64 rounded-xl absolute right-5 bottom-1 flex-col bg-base-100 shadow-2xl border-secondary border-2 ${
         isOpen ? '' : 'animate-chat-box-close'
       }`}
       data-theme={themeState}
