@@ -15,7 +15,7 @@ export default function Chatbox() {
 
   return (
     <div
-      className={`flex md:w-96 md:h-96 rounded-xl absolute right-5 bottom-1 flex-col bg-base-100 shadow-2xl border-secondary border-2 ${
+      className={`flex md:w-96 md:h-96 rounded-xl relative flex-col bg-base-100 shadow-2xl border-secondary border-2 ${
         isOpen ? '' : 'animate-chat-box-close'
       }`}
       data-theme={themeState}

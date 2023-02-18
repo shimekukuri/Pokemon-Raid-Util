@@ -8,6 +8,7 @@ import { themeContext } from '@/Context/themeContext';
 import { drawerItems } from '@/Context/drawerUtilitys/drawerItems';
 import Navbar from '../navbar/Navbar';
 import Chatbox from '../chatbox/Chatbox';
+import ChatBoxContainer from '../chatboxContainer/ChatboxContainer';
 
 const oswald = Oswald({ weight: '700', subsets: ['latin'] });
 const ssp = Source_Serif_Pro({ weight: '400', subsets: ['latin'] });
@@ -53,7 +54,7 @@ export default function Layout({ children }: { children: ReactNode }) {
           </footer>
         </div>
       </Drawer>
-      <Chatbox />
+      <ChatBoxContainer />
     </>
   );
 }
