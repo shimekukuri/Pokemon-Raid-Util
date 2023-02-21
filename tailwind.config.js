@@ -36,7 +36,11 @@ module.exports = {
       },
       animation: {
         'scale-up': '100ms ease-in forwards scale',
-        'chat-box-close': '200ms ease-in-out forwards chatBoxClose',
+        'chat-box-close-200': '200ms ease-in-out forwards chatBoxClose',
+        'chat-box-close-300': '300ms ease-in-out forwards chatBoxClose',
+        'chat-box-close-400': '400ms ease-in-out forwards chatBoxClose',
+        'chat-box-close-500': '500ms ease-in-out forwards chatBoxClose',
+        'chat-box-close-600': '600ms ease-in-out forwards chatBoxClose',
         'opacity-to-zero': '200ms ease-in forwards opacity-to-zero',
         'opacity-to-one': '1000ms ease-in forwards opacity-to-one',
       },
