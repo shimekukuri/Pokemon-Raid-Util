@@ -12,15 +12,21 @@ interface chatboxstate {
   recent: Date | null;
 }
 
+type chatboxActions = {
+  update: 'update';
+};
+
 const reducer = (action, payload) => {};
 
-const initialState: chatboxstate = {
-  id: 0,
-  active: false,
-  messages: [],
-  newMessage: 0,
-  recent: null,
-};
+const initialState: chatboxstate[] = [
+  {
+    id: 0,
+    active: false,
+    messages: [],
+    newMessage: 0,
+    recent: null,
+  },
+];
 
 export default function ChatBoxContainer() {
   const { dState, setDSTate } = useContext(drawerContext);
@@ -28,7 +34,7 @@ export default function ChatBoxContainer() {
 
   return (
     <div
-      className={`fixed bottom-0 right-0 flex justify-end items-end bg-opacity-0 overflow-visible gap-2 ${
+      className={`fixed bottom-0 right-0 flex items-end bg-opacity-0 overflow-x-scroll max-w-full gap-2 ${
         dState ? '-z-50' : ''
       }`}
       data-theme={themeState}
