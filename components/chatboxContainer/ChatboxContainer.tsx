@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Chatbox from '../chatbox/Chatbox';
 import { drawerContext } from '@/Context/drawerContext';
 import ChatboxController from '../ChatboxController/ChatboxController';
@@ -43,6 +43,12 @@ export default function ChatBoxContainer() {
   const { themeState } = useContext(themeContext);
   const [openChat, setOpenChat] = useState<boolean>(false);
 
+  useEffect(() => {
+    if (dState) {
+      setOpenChat(false);
+    }
+  }, [dState]);
+
   return (
     <div
       className={`fixed flex bottom-1 right-1 bg-opacity-0 overflow-x-scroll max-w-full gap-2 items-end${
@@ -63,7 +69,7 @@ export default function ChatBoxContainer() {
       ) : (
         ''
       )}
-      <ChatboxController setOpenChat={setOpenChat} />
+      <ChatboxController openChat={openChat} setOpenChat={setOpenChat} />
     </div>
   );
 }
