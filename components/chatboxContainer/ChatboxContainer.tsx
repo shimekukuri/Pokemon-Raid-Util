@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Chatbox from '../chatbox/Chatbox';
 import { drawerContext } from '@/Context/drawerContext';
 import ChatboxController from '../ChatboxController/ChatboxController';
@@ -14,9 +14,19 @@ interface chatboxstate {
 
 type chatboxActions = {
   update: 'update';
+  close: 'close';
 };
 
-const reducer = (action, payload) => {};
+const reducer = (state: chatboxstate, action: any) => {
+  switch (action.type) {
+    case 'close': {
+      return { ...state, active: false };
+    }
+    case 'open': {
+      return { ...state, active: true };
+    }
+  }
+};
 
 const initialState: chatboxstate[] = [
   {
@@ -31,22 +41,29 @@ const initialState: chatboxstate[] = [
 export default function ChatBoxContainer() {
   const { dState, setDSTate } = useContext(drawerContext);
   const { themeState } = useContext(themeContext);
+  const [openChat, setOpenChat] = useState<boolean>(false);
 
   return (
     <div
-      className={`fixed bottom-0 right-0 flex items-end bg-opacity-0 overflow-x-scroll max-w-full gap-2 ${
+      className={`fixed flex bottom-1 right-1 bg-opacity-0 overflow-x-scroll max-w-full gap-2 items-end${
         dState ? '-z-50' : ''
       }`}
       data-theme={themeState}
     >
-      <Chatbox />
-      <Chatbox />
-      <Chatbox />
-      <Chatbox />
-      <Chatbox />
-      <Chatbox />
-      <Chatbox />
-      <ChatboxController />
+      {openChat ? (
+        <div className="flex items-end overflow-x-scroll max-w-full gap-2">
+          <Chatbox />
+          <Chatbox />
+          <Chatbox />
+          <Chatbox />
+          <Chatbox />
+          <Chatbox />
+          <Chatbox />
+        </div>
+      ) : (
+        ''
+      )}
+      <ChatboxController setOpenChat={setOpenChat} />
     </div>
   );
 }

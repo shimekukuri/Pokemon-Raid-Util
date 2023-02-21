@@ -1,9 +1,13 @@
 import React from 'react';
 
-export default function ChatboxController() {
+export default function ChatboxController({
+  setOpenChat,
+}: {
+  setOpenChat: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
   return (
     <label className="btn btn-circle swap swap-rotate">
-      <input type="checkbox" />
+      <input type="checkbox" onChange={(v) => setOpenChat(v.target.checked)} />
 
       <svg
         className="swap-off fill-current"
