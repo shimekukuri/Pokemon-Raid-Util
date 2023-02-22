@@ -9,6 +9,7 @@ const userSchema = new mongoose.Schema(
     rating: { type: Number, required: true, default: 3 },
     banned: { type: Boolean, default: false },
     confirmedPokemon: [{ pokemon: String }],
+    friends: [{ type: Array, required: false, default: [] }],
   },
   {
     timestamps: true,
