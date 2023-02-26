@@ -1,6 +1,6 @@
 import NextAuth from 'next-auth';
 import User from '../../../models/User';
-import db from '@/utilities/db/db';
+import db from '../../../utils/db';
 import bcryptjs from 'bcryptjs';
 import CredentialProvider from 'next-auth/providers/credentials';
 
@@ -10,7 +10,7 @@ export default NextAuth({
   },
   callbacks: {
     async jwt({ token, user }) {
-      if (user?.id) token.id = user.id;
+      if (user?._id) token._id = user._id;
       if (user?.isAdmin) token.isAdmin = user.isAdmin;
       return token;
     },
