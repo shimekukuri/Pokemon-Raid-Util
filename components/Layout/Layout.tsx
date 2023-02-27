@@ -9,6 +9,7 @@ import { drawerItems } from '@/Context/drawerUtilitys/drawerItems';
 import Navbar from '../navbar/Navbar';
 import Chatbox from '../chatbox/Chatbox';
 import ChatBoxContainer from '../chatboxContainer/ChatboxContainer';
+import { useSession } from 'next-auth/react';
 
 const oswald = Oswald({ weight: '700', subsets: ['latin'] });
 const ssp = Source_Serif_Pro({ weight: '400', subsets: ['latin'] });
@@ -16,6 +17,7 @@ const ssp = Source_Serif_Pro({ weight: '400', subsets: ['latin'] });
 export default function Layout({ children }: { children: ReactNode }) {
   const { dState, setDSTate } = useContext(drawerContext);
   const { themes, themeState, setThemeState } = useContext(themeContext);
+  const session = useSession();
 
   const themeStrings = (): string[] => {
     const arr = [];
