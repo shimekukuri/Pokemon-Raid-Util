@@ -2,13 +2,34 @@ import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
 import DrawerProvider from '@/Context/drawerContext';
 import ThemeProvider from '@/Context/themeContext';
+import { useRouter } from 'next/router';
+import { SessionProvider, useSession } from 'next-auth/react';
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}: AppProps) {
   return (
-    <ThemeProvider>
-      <DrawerProvider>
-        <Component {...pageProps} />
-      </DrawerProvider>
-    </ThemeProvider>
+    <SessionProvider session={session}>
+      <ThemeProvider>
+        <DrawerProvider>
+          <Component {...pageProps} />
+        </DrawerProvider>
+      </ThemeProvider>
+    </SessionProvider>
   );
+}
+
+function Auth({ children }) {
+  const router = useRouter();
+  const { status } = useSession({
+    required: true,
+    onUnauthenticated() {
+      router.push('/unauthorized?message=login required');
+    },
+  });
+  if (status === 'loading') {
+    return <div>Loading ...</div>;
+  }
+  return children;
 }
