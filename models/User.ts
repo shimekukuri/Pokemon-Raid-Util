@@ -1,20 +1,34 @@
 import mongoose from 'mongoose';
 
-const userSchema = new mongoose.Schema(
+export interface user {
+  name: string;
+  password: string;
+  email: string;
+  rating: number;
+  banned: boolean;
+  confirmedPokemon: string[];
+  friends: string[];
+}
+
+const Schema = mongoose.Schema;
+
+const userSchema = new Schema<user>(
   {
     name: { type: String, required: true },
     password: { type: String, required: true },
     email: { type: String, required: true },
-    isAdmin: { type: Boolean, required: true, default: false },
     rating: { type: Number, required: true, default: 3 },
     banned: { type: Boolean, default: false },
-    confirmedPokemon: [{ pokemon: String }],
-    friends: [{ type: Array, required: false, default: [] }],
+    confirmedPokemon: { type: [String], default: [] },
+    friends: [{ type: [String], required: false, default: [] }],
   },
   {
     timestamps: true,
   }
 );
 
-const User = mongoose.models.User || mongoose.model('User', userSchema);
+const User =
+  (mongoose.models.User as mongoose.Model<user>) ||
+  mongoose.model('User', userSchema);
+
 export default User;
