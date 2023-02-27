@@ -1,6 +1,6 @@
 import bcryptjs from 'bcryptjs';
 import User from '../../../models/User';
-import db from '../../../utils/db';
+import db from '../../../utilities/db/db';
 
 const handler = async (req, res) => {
   if (req.method !== 'POST') {
@@ -8,7 +8,6 @@ const handler = async (req, res) => {
   }
   const { name, email, password } = req.body;
   if (
-    !name ||
     !email ||
     !email.includes('@') ||
     !password ||
@@ -30,10 +29,8 @@ const handler = async (req, res) => {
   }
 
   const newUser = new User({
-    name,
     email,
     password: bcryptjs.hashSync(password),
-    isAdmin: false,
   });
 
   const user = await newUser.save();
@@ -41,9 +38,7 @@ const handler = async (req, res) => {
   res.status(201).send({
     message: 'Created user!',
     _id: user._id,
-    name: user.name,
     email: user.email,
-    isAdmin: user.isAdmin,
   });
 };
 
