@@ -8,6 +8,7 @@ const handler = async (req, res) => {
   }
   const { name, email, password } = req.body;
   if (
+    !name ||
     !email ||
     !email.includes('@') ||
     !password ||
@@ -29,16 +30,18 @@ const handler = async (req, res) => {
   }
 
   const newUser = new User({
+    name,
     email,
     password: bcryptjs.hashSync(password),
+    isAdmin: false,
   });
 
   const user = await newUser.save();
   await db.disconnect();
+  console.log(user);
   res.status(201).send({
     message: 'Created user!',
-    _id: user._id,
-    email: user.email,
+    user,
   });
 };
 
