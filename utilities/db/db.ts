@@ -20,7 +20,7 @@ export const connect = async () => {
     }
     await mongoose.disconnect();
   }
-  const db = await mongoose.connect(process.env.MONGO_DB_URI);
+  const db = await mongoose.connect(process.env.MONGODB_URI);
   console.log('New Connection');
   connection.isConnected = db.connections[0].readyState;
 };
