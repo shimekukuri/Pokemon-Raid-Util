@@ -17,18 +17,21 @@ export default function Hero({ background }: { background?: string }) {
     formState: { errors },
   } = useForm();
 
-  const submitHandler = async ({ email, password }) => {
+  const submitHandler = async ({ name, email, password }) => {
+    console.log(name, email, password);
     try {
-      await fetch('/api/auth/signup', {
+      const meep = await fetch('/api/auth/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
+          name: name,
           email: email,
           password: password,
         }),
-      });
+      }).then((m) => m.json());
+      console.log(meep);
       const result = await signIn('credentials', {
         redirect: false,
         email,
@@ -65,6 +68,22 @@ export default function Hero({ background }: { background?: string }) {
         {account ? (
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
             <div className="card-body">
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Name</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Name"
+                  className="input input-primary"
+                  {...register('name', {
+                    required: 'Please enter name',
+                  })}
+                />
+                {errors.email && (
+                  <div className="text-red-500">{`${errors.email.message}`}</div>
+                )}
+              </div>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
