@@ -95,7 +95,7 @@ export default function ChatBoxContainer() {
 
   return (
     <div
-      className={`fixed flex bottom-1 right-1 bg-opacity-0 overflow-x-scroll max-w-full gap-2${
+      className={`fixed flex bottom-1 right-1 bg-opacity-0 overflow-x-scroll max-w-full justify-end gap-2${
         dState ? '-z-50' : ''
       }`}
       data-theme={themeState}
@@ -114,10 +114,13 @@ export default function ChatBoxContainer() {
         ''
       )}
       {state.friends ? (
-        <div className="flex items-end overflow-x-scroll max-w-full gap-2 flex-row-reverse">
+        <div
+          className="flex items-end overflow-x-scroll gap-2 flex-row-reverse"
+          style={{ maxWidth: '90%', scrollSnapType: 'x mandatory' }}
+        >
           {[...Array(10)].map((x, i) => {
             return (
-              <div key={`test${i}`} className={``}>
+              <div key={`test${i}`} className={`snap-end`}>
                 <Card2 />
               </div>
             );
