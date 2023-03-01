@@ -1,53 +1,96 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useReducer, useState } from 'react';
 import Chatbox from '../chatbox/Chatbox';
 import { drawerContext } from '@/Context/drawerContext';
 import ChatboxController from '../ChatboxController/ChatboxController';
 import { themeContext } from '@/Context/themeContext';
 
-interface chatboxstate {
-  id: number;
-  active: boolean;
-  messages: string[];
-  newMessage: number;
-  recent: Date | null;
+// interface chatboxstate {
+//   id: number;
+//   active: boolean;
+//   messages: string[];
+//   newMessage: number;
+//   recent: Date | null;
+// }
+
+// type chatboxActions = {
+//   update: 'update';
+//   close: 'close';
+// };
+
+// const reducer = (state: chatboxstate, action: any) => {
+//   switch (action.type) {
+//     case 'close': {
+//       return { ...state, active: false };
+//     }
+//     case 'open': {
+//       return { ...state, active: true };
+//     }
+//   }
+// };
+
+// const initialState: chatboxstate[] = [
+//   {
+//     id: 0,
+//     active: false,
+//     messages: [],
+//     newMessage: 0,
+//     recent: null,
+//   },
+// ];
+
+export interface cbstate {
+  menu: boolean;
+  chatbox: boolean;
+  friends: boolean;
 }
 
-type chatboxActions = {
-  update: 'update';
-  close: 'close';
+export const CHATBOX_REDUCER_ACTIONS = {
+  CHATBOXES: 'CHATBOXES',
+  FRIENDS: 'FRIENDS',
+  OPEN_MENU: 'OPEN_MENU',
 };
 
-const reducer = (state: chatboxstate, action: any) => {
+const initalState = {
+  menu: false,
+  chatbox: false,
+  friends: false,
+};
+
+const reducerFunction = (state: cbstate, action): cbstate => {
   switch (action.type) {
-    case 'close': {
-      return { ...state, active: false };
+    case CHATBOX_REDUCER_ACTIONS.CHATBOXES: {
+      state.friends = false;
+      state.chatbox = action.payload;
+      return { ...state };
     }
-    case 'open': {
-      return { ...state, active: true };
+    case CHATBOX_REDUCER_ACTIONS.FRIENDS: {
+      state.chatbox = false;
+      state.menu = true;
+      state.friends = action.payload;
+      return { ...state };
+    }
+    case CHATBOX_REDUCER_ACTIONS.OPEN_MENU: {
+      console.log(action.payload);
+      state = { ...initalState };
+      state.menu = action.payload;
+      console.log(state);
+      return { ...state };
     }
   }
 };
-
-const initialState: chatboxstate[] = [
-  {
-    id: 0,
-    active: false,
-    messages: [],
-    newMessage: 0,
-    recent: null,
-  },
-];
 
 export default function ChatBoxContainer() {
   const { dState, setDSTate } = useContext(drawerContext);
   const { themeState } = useContext(themeContext);
   const [openChat, setOpenChat] = useState<boolean>(false);
+  const [state, dispatch] = useReducer(reducerFunction, initalState as cbstate);
 
   useEffect(() => {
+    console.log(state);
     if (dState) {
       setOpenChat(false);
     }
-  }, [dState]);
+  }, [dState, state]);
 
   return (
     <div
@@ -56,7 +99,7 @@ export default function ChatBoxContainer() {
       }`}
       data-theme={themeState}
     >
-      {openChat ? (
+      {state.chatbox ? (
         <div className="flex items-end overflow-x-scroll max-w-full gap-2">
           <Chatbox />
           <Chatbox />
@@ -69,7 +112,8 @@ export default function ChatBoxContainer() {
       ) : (
         ''
       )}
-      <ChatboxController openChat={openChat} setOpenChat={setOpenChat} />
+      {state.friends ? <div>friends</div> : ''}
+      <ChatboxController chatboxDispatch={dispatch} chatboxState={state} />
     </div>
   );
 }
