@@ -52,7 +52,6 @@ export default function Test() {
           pokedata,
           pokedata,
         ].map((x, i) => {
-          console.log(x);
           return (
             <Card1
               key={i}

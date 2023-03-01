@@ -3,12 +3,12 @@ import User from '../../../models/User';
 import db from '../../../utilities/db/db';
 
 const handler = async (req, res) => {
-  res.status(200).json({ message: 'reachable' });
   if (req.method !== 'POST') {
     return;
   }
   const { name, email, password } = req.body;
   if (
+    !name ||
     !email ||
     !email.includes('@') ||
     !password ||
@@ -30,6 +30,7 @@ const handler = async (req, res) => {
   }
 
   const newUser = new User({
+    name,
     email,
     password: bcryptjs.hashSync(password),
   });

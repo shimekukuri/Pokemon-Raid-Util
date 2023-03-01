@@ -16,7 +16,7 @@ export default function ChatboxController({
   }, [chatboxState]);
 
   return (
-    <div className="right-1 h-40 flex flex-col justify-end gap-2">
+    <div className="right-1 h-40 flex flex-col justify-end gap-2 self-end">
       {chatboxState.menu ? (
         <>
           <label className="btn btn-circle swap swap-rotate">

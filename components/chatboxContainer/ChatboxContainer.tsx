@@ -94,7 +94,7 @@ export default function ChatBoxContainer() {
 
   return (
     <div
-      className={`fixed flex bottom-1 right-1 bg-opacity-0 overflow-x-scroll max-w-full gap-2 items-end${
+      className={`fixed flex bottom-1 right-1 bg-opacity-0 overflow-x-scroll max-w-full gap-2${
         dState ? '-z-50' : ''
       }`}
       data-theme={themeState}
@@ -112,7 +112,15 @@ export default function ChatBoxContainer() {
       ) : (
         ''
       )}
-      {state.friends ? <div>friends</div> : ''}
+      {state.friends
+        ? [...Array(10)].map((x, i) => {
+            return (
+              <div key={`test${i}`} className={`min-h-full bg-red-600`}>
+                test {i}
+              </div>
+            );
+          })
+        : ''}
       <ChatboxController chatboxDispatch={dispatch} chatboxState={state} />
     </div>
   );
