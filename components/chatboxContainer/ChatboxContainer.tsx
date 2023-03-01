@@ -3,6 +3,7 @@ import Chatbox from '../chatbox/Chatbox';
 import { drawerContext } from '@/Context/drawerContext';
 import ChatboxController from '../ChatboxController/ChatboxController';
 import { themeContext } from '@/Context/themeContext';
+import Card2 from '../card/Card2';
 
 // interface chatboxstate {
 //   id: number;
@@ -100,7 +101,7 @@ export default function ChatBoxContainer() {
       data-theme={themeState}
     >
       {state.chatbox ? (
-        <div className="flex items-end overflow-x-scroll max-w-full gap-2">
+        <div className="flex items-end overflow-x-scroll max-w-full gap-2 flex-row-reverse">
           <Chatbox />
           <Chatbox />
           <Chatbox />
@@ -112,15 +113,19 @@ export default function ChatBoxContainer() {
       ) : (
         ''
       )}
-      {state.friends
-        ? [...Array(10)].map((x, i) => {
+      {state.friends ? (
+        <div className="flex items-end overflow-x-scroll max-w-full gap-2 flex-row-reverse">
+          {[...Array(10)].map((x, i) => {
             return (
-              <div key={`test${i}`} className={`min-h-full bg-red-600`}>
-                test {i}
+              <div key={`test${i}`} className={``}>
+                <Card2 />
               </div>
             );
-          })
-        : ''}
+          })}
+        </div>
+      ) : (
+        ''
+      )}
       <ChatboxController chatboxDispatch={dispatch} chatboxState={state} />
     </div>
   );
