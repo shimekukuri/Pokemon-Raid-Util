@@ -110,7 +110,7 @@ export default function ChatboxController() {
   return (
     <div
       data-theme={themeState}
-      className={`${isOpen ? 'rounded-xl' : 'rounded-full'}`}
+      className={`${isOpen ? 'rounded-xl' : 'rounded-full'} snap-end`}
     >
       {isOpen ? openComponent() : closedComponent()}
     </div>

@@ -101,7 +101,10 @@ export default function ChatBoxContainer() {
       data-theme={themeState}
     >
       {state.chatbox ? (
-        <div className="flex items-end overflow-x-scroll max-w-full gap-2 flex-row-reverse">
+        <div
+          className="flex items-end overflow-x-scroll max-w-full gap-2 flex-row-reverse"
+          style={{ maxWidth: '90%', scrollSnapType: 'x mandatory' }}
+        >
           <Chatbox />
           <Chatbox />
           <Chatbox />
