@@ -5,40 +5,6 @@ import ChatboxController from '../ChatboxController/ChatboxController';
 import { themeContext } from '@/Context/themeContext';
 import Card2 from '../card/Card2';
 
-// interface chatboxstate {
-//   id: number;
-//   active: boolean;
-//   messages: string[];
-//   newMessage: number;
-//   recent: Date | null;
-// }
-
-// type chatboxActions = {
-//   update: 'update';
-//   close: 'close';
-// };
-
-// const reducer = (state: chatboxstate, action: any) => {
-//   switch (action.type) {
-//     case 'close': {
-//       return { ...state, active: false };
-//     }
-//     case 'open': {
-//       return { ...state, active: true };
-//     }
-//   }
-// };
-
-// const initialState: chatboxstate[] = [
-//   {
-//     id: 0,
-//     active: false,
-//     messages: [],
-//     newMessage: 0,
-//     recent: null,
-//   },
-// ];
-
 export interface cbstate {
   menu: boolean;
   chatbox: boolean;

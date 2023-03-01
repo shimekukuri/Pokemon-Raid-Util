@@ -97,7 +97,7 @@ export default function ChatboxController() {
           </div>
           <div className="flex bg-base-200 rounded-b-xl items-center px-2 py-1 gap-1 justify-between z-10">
             <textarea
-              className="textarea textarea-accent textarea-xs flex-1 text-sm"
+              className="textarea textarea-accent textarea-xs flex-1 text-base"
               placeholder="Message"
             ></textarea>
             <button className="btn btn-secondary">Send</button>
