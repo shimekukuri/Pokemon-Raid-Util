@@ -84,8 +84,8 @@ export default function ChatBoxContainer() {
       )}
       {state.friends ? (
         <div
-          className="flex items-end overflow-x-scroll gap-2 flex-row-reverse"
-          style={{ maxWidth: '90%', scrollSnapType: 'x mandatory' }}
+          className="flex items-end overflow-x-scroll gap-2 flex-row-reverse max-w-full"
+          style={{ scrollSnapType: 'x mandatory' }}
         >
           {[...Array(10)].map((x, i) => {
             return (
