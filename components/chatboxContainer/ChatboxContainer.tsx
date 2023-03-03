@@ -37,14 +37,17 @@ const reducerFunction = (state: cbstate, action): cbstate => {
       return { ...state };
     }
     case CHATBOX_REDUCER_ACTIONS.OPEN_MENU: {
-      console.log(action.payload);
       state = { ...initalState };
       state.menu = action.payload;
-      console.log(state);
+
       return { ...state };
     }
   }
 };
+
+// export interface WsState: {
+//   activeChats: []
+// }
 
 export default function ChatBoxContainer() {
   const { dState, setDSTate } = useContext(drawerContext);
@@ -53,7 +56,6 @@ export default function ChatBoxContainer() {
   const [state, dispatch] = useReducer(reducerFunction, initalState as cbstate);
 
   useEffect(() => {
-    console.log(state);
     if (dState) {
       setOpenChat(false);
     }
@@ -71,7 +73,7 @@ export default function ChatBoxContainer() {
           className="flex items-end overflow-x-scroll max-w-full gap-2 flex-row-reverse"
           style={{ maxWidth: '90%', scrollSnapType: 'x mandatory' }}
         >
-          <Chatbox />
+          <Chatbox user="1" messages={['meep', 'yolo', 'swag']} />
           <Chatbox />
           <Chatbox />
           <Chatbox />

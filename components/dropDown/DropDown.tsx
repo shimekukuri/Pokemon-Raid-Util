@@ -1,7 +1,6 @@
 import React, { ReactElement } from 'react';
 
 export function DropDownMenu({ children }: { children: React.ReactNode }) {
-  console.log(children);
   return (
     <div className="dropdown dropdown-end">
       <label tabIndex={0} className="btn m-1">

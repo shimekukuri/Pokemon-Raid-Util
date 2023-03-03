@@ -18,7 +18,6 @@ export default function Hero({ background }: { background?: string }) {
   } = useForm();
 
   const submitHandler = async ({ name, email, password }) => {
-    console.log(name, email, password);
     try {
       const meep = await fetch('/api/auth/signup', {
         method: 'POST',
@@ -31,7 +30,7 @@ export default function Hero({ background }: { background?: string }) {
           password: password,
         }),
       }).then((m) => m.json());
-      console.log(meep);
+
       const result = await signIn('credentials', {
         redirect: false,
         email,

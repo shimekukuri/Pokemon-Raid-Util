@@ -2,13 +2,20 @@ import React, { useState, useContext, useEffect } from 'react';
 import { themeContext } from '@/Context/themeContext';
 import Toast from '../toast/toast';
 
-export default function ChatboxController() {
+export default function ChatboxController({
+  user,
+  messages,
+}: {
+  user: string;
+  messages: string[];
+}) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [firstRender, setFirstRender] = useState(false);
   const { themeState } = useContext(themeContext);
 
   useEffect(() => {
     setFirstRender(true);
+    console.log(messages);
   }, []);
 
   const closedComponent = () => {
@@ -60,39 +67,14 @@ export default function ChatboxController() {
       Test 2
       `}
             />
+            {messages
+              ? messages.map((text, i) => {
+                  return (
+                    <Toast content={text} key={text.substring(0, 4) + i} />
+                  );
+                })
+              : ''}
             <Toast content=" Nest " />
-            <Toast content="asdplfkjasfd jf " />
-            <Toast content="asdplfkjasfd jf " />
-            <Toast content="asdplfkjasfd jf " />
-            <Toast content="asdplfkjasfd jf " />
-            <Toast content="asdplfkjasfd jf " />
-            <Toast content="asdplfkjasfd jf " />
-            <Toast content="asdplfkjasfd jf " />
-            <Toast content="asdplfkjasfd jf " />
-            <Toast content="asdplfkjasfd jf " />
-            <Toast content="asdplfkjasfd jf " />
-            <Toast content="asdplfkjasfd jf " />
-            <Toast content="asdplfkjasfd jf " />
-            <Toast content="asdplfkjasfd jf " />
-            <Toast content="asdplfkjasfd jf " />
-            <Toast content="asdplfkjasfd jf " />
-            <Toast content="asdplfkjasfd jf " />
-            <Toast content="asdplfkjasfd jf " />
-            <Toast content="asdplfkjasfd jf " />
-            <Toast content="asdplfkjasfd jf " />
-            <Toast content="asdplfkjasfd jf " />
-            <Toast content="asdplfkjasfd jf " />
-            <Toast content="asdplfkjasfd jf " />
-            <Toast content="asdplfkjasfd jf " />
-            <Toast content="asdplfkjasfd jf " />
-            <Toast content="asdplfkjasfd jf " />
-            <Toast content="asdplfkjasfd jf " />
-            <Toast content="asdplfkjasfd jf " />
-            <Toast content="asdplfkjasfd jf " />
-            <Toast content="asdplfkjasfd jf " />
-            <Toast content="asdplfkjasfd jf " />
-            <Toast content="asdplfkjasfd jf " />
-            <Toast content="asdplfkjasfd jf " />
             <Toast content=" End " />
           </div>
           <div className="flex bg-base-200 rounded-b-xl items-center px-2 py-1 gap-1 justify-between z-10">

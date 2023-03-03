@@ -16,7 +16,6 @@ export default function Test() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setPokeData(data);
         setLoading((prev) => false);
       })

@@ -2,6 +2,7 @@ import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
 import DrawerProvider from '@/Context/drawerContext';
 import ThemeProvider from '@/Context/themeContext';
+import WebSocketProvider from '@/Context/websocketContext';
 import { useRouter } from 'next/router';
 import { SessionProvider, useSession } from 'next-auth/react';
 
@@ -13,7 +14,9 @@ export default function App({
     <SessionProvider session={session}>
       <ThemeProvider>
         <DrawerProvider>
-          <Component {...pageProps} />
+          <WebSocketProvider>
+            <Component {...pageProps} />
+          </WebSocketProvider>
         </DrawerProvider>
       </ThemeProvider>
     </SessionProvider>
