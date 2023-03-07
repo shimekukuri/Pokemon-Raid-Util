@@ -1,6 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { themeContext } from '@/Context/themeContext';
+import { webSocketContext } from '@/Context/websocketContext';
 import Toast from '../toast/toast';
+import { useForm } from 'react-hook-form';
 
 export default function ChatboxController({
   user,
@@ -12,12 +14,32 @@ export default function ChatboxController({
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [firstRender, setFirstRender] = useState(false);
   const { themeState } = useContext(themeContext);
-  const [localMessages, setLocalMessages] = useState([]);
+  const { ws }: { ws: React.MutableRefObject<any> } =
+    useContext(webSocketContext);
+  const [localMessages, setLocalMessages] = useState<String>();
+
+  let w: WebSocket = ws.current;
 
   useEffect(() => {
     setFirstRender(true);
-    console.log(messages);
+    console.log(user);
   }, []);
+
+  const enterPress = (e: any) => {
+    console.log(e.keyCode, e.shiftKey);
+    if (e.keyCode === 13 && e.shiftKey === false) {
+      w.send(
+        JSON.stringify({
+          event: 'messageUser',
+          sendTo: user,
+          message: localMessages,
+          from: 'website',
+          date: new Date().toLocaleTimeString(),
+        })
+      );
+      setLocalMessages('');
+    }
+  };
 
   const closedComponent = () => {
     return (
@@ -75,6 +97,9 @@ export default function ChatboxController({
             <textarea
               className="textarea textarea-accent textarea-xs flex-1 text-base"
               placeholder="Message"
+              onKeyDown={enterPress}
+              onChange={(e) => setLocalMessages(e.target.value)}
+              value={localMessages}
             ></textarea>
             <button className="btn btn-secondary">Send</button>
           </div>
