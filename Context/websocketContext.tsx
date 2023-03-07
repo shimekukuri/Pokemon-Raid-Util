@@ -10,8 +10,14 @@ import { useSession } from 'next-auth/react';
 
 export const webSocketContext = createContext<any>(null);
 
+export interface chatInstance {
+  user: {
+    message: string[];
+  };
+}
+
 export interface socketStateInterface {
-  instances: {};
+  instances?: chatInstance | {};
 }
 
 export default function WebSocketProvider({
@@ -27,9 +33,7 @@ export default function WebSocketProvider({
   useEffect(() => {
     ws.current = new WebSocket('ws://localhost:5555');
     let w = ws.current as WebSocket;
-    w.onopen = (event) => {
-      console.log(event);
-    };
+    w.onopen = (event) => {};
 
     w.onmessage = (event) => {
       let e = JSON.parse(event.data);
@@ -39,12 +43,17 @@ export default function WebSocketProvider({
           break;
         }
         case 'message': {
-          console.log(e);
-          console.log(e.message);
-          setSocketState({
-            ...socketState,
-            instances: { ...socketState.instances },
-          });
+          let temp = { ...socketState };
+          if (!socketState.instances[e.from]) {
+            socketState.instances[e.from] = { message: [] };
+          }
+          temp.instances[e.from].time = Date.now();
+
+          temp.instances[e.from].message = [
+            ...temp.instances[e.from].message,
+            e.message,
+          ];
+          setSocketState(temp);
           break;
         }
       }
@@ -55,7 +64,7 @@ export default function WebSocketProvider({
 
   const value = {
     socketState,
-    setSocketState,
+    ws,
   };
 
   return (

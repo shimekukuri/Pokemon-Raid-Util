@@ -4,6 +4,11 @@ import { drawerContext } from '@/Context/drawerContext';
 import ChatboxController from '../ChatboxController/ChatboxController';
 import { themeContext } from '@/Context/themeContext';
 import Card2 from '../card/Card2';
+import {
+  webSocketContext,
+  socketStateInterface,
+  chatInstance,
+} from '@/Context/websocketContext';
 
 export interface cbstate {
   menu: boolean;
@@ -45,21 +50,30 @@ const reducerFunction = (state: cbstate, action): cbstate => {
   }
 };
 
-// export interface WsState: {
-//   activeChats: []
-// }
-
 export default function ChatBoxContainer() {
   const { dState, setDSTate } = useContext(drawerContext);
   const { themeState } = useContext(themeContext);
+  const { socketState }: { socketState: socketStateInterface } =
+    useContext(webSocketContext);
   const [openChat, setOpenChat] = useState<boolean>(false);
   const [state, dispatch] = useReducer(reducerFunction, initalState as cbstate);
+  const [chatStates, setChatStates] = useState([]);
 
   useEffect(() => {
     if (dState) {
       setOpenChat(false);
     }
   }, [dState, state]);
+
+  useEffect(() => {
+    let temp = [];
+    for (let instance in socketState.instances) {
+      temp.push({
+        [instance]: socketState.instances[instance].message,
+      });
+    }
+    setChatStates(temp);
+  }, [socketState]);
 
   return (
     <div
@@ -73,17 +87,22 @@ export default function ChatBoxContainer() {
           className="flex items-end overflow-x-scroll max-w-full gap-2 flex-row-reverse"
           style={{ maxWidth: '90%', scrollSnapType: 'x mandatory' }}
         >
-          <Chatbox user="1" messages={['meep', 'yolo', 'swag']} />
-          <Chatbox />
-          <Chatbox />
-          <Chatbox />
-          <Chatbox />
-          <Chatbox />
-          <Chatbox />
+          <Chatbox user="0" messages={['meep', 'yolo', 'swag']} />
+          {chatStates.map((x) => {
+            let keys = Object.keys(x)[0];
+            console.log(keys);
+            console.log(x);
+            console.log(x[keys]);
+
+            return (
+              <Chatbox key={keys + 'user'} user={keys} messages={x[keys]} />
+            );
+          })}
         </div>
       ) : (
         ''
       )}
+
       {state.friends ? (
         <div
           className="flex items-end overflow-x-scroll gap-2 flex-row-reverse max-w-full"

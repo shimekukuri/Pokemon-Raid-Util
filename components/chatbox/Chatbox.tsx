@@ -12,6 +12,7 @@ export default function ChatboxController({
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [firstRender, setFirstRender] = useState(false);
   const { themeState } = useContext(themeContext);
+  const [localMessages, setLocalMessages] = useState([]);
 
   useEffect(() => {
     setFirstRender(true);
@@ -60,21 +61,14 @@ export default function ChatboxController({
         </div>
         <div className={`flex-1 flex-col flex ${isOpen ? '' : 'hidden'}`}>
           <div className="overflow-y-scroll h-44 md:h-72 w-full flex flex-col ">
-            <Toast content={`as;dlkfjas;ldkfj asl;kdfj as;lkdfj ;alskjf `} />
-            <Toast
-              content={`Test 1
-      
-      Test 2
-      `}
-            />
             {messages
               ? messages.map((text, i) => {
+                  console.log(messages);
                   return (
                     <Toast content={text} key={text.substring(0, 4) + i} />
                   );
                 })
               : ''}
-            <Toast content=" Nest " />
             <Toast content=" End " />
           </div>
           <div className="flex bg-base-200 rounded-b-xl items-center px-2 py-1 gap-1 justify-between z-10">
