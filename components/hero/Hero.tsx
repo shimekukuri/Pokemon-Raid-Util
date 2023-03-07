@@ -1,14 +1,23 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Oswald, Source_Serif_Pro } from '@next/font/google';
 import Link from 'next/link';
-import { signIn } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
 import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/router';
 
 const oswald = Oswald({ weight: '700', subsets: ['latin'] });
 const ssp = Source_Serif_Pro({ weight: '400', subsets: ['latin'] });
 
 export default function Hero({ background }: { background?: string }) {
   const [account, setAccount] = useState(true);
+  const { data: session } = useSession();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (session) {
+      router.push('/home');
+    }
+  }, [session]);
 
   const {
     handleSubmit,
@@ -38,6 +47,21 @@ export default function Hero({ background }: { background?: string }) {
       });
       if (result.error) {
         console.log(result.error);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const signInSubmit = async ({ emailLogin, passwordLogin }) => {
+    try {
+      const result = await signIn('credentials', {
+        redirect: false,
+        email: emailLogin,
+        password: passwordLogin,
+      });
+      if (result.error) {
+        console.error(result.error);
       }
     } catch (err) {
       console.error(err);
@@ -174,16 +198,36 @@ export default function Hero({ background }: { background?: string }) {
                   type="email"
                   placeholder="Email"
                   className="input input-primary"
+                  {...register('emailLogin', {
+                    required: 'Please enter email',
+                    pattern: {
+                      value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/i,
+                      message: 'Enter valid email address',
+                    },
+                  })}
                 />
+                {errors.email && (
+                  <div className="text-red-500">{`${errors.email.message}`}</div>
+                )}
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text">Password</span>
                   </label>
                   <input
-                    type="text"
+                    type="password"
                     placeholder="Password"
                     className="input input-primary"
+                    {...register('passwordLogin', {
+                      required: 'Please enter password',
+                      minLength: {
+                        value: 6,
+                        message: 'password is more than 5 chars',
+                      },
+                    })}
                   />
+                  {errors.password && (
+                    <div className="text-red-500">{`${errors.password.message}`}</div>
+                  )}
                   <label className="label">
                     <a onClick={() => setAccount((prev) => !prev)}>
                       Register A Profile
@@ -192,7 +236,12 @@ export default function Hero({ background }: { background?: string }) {
                 </div>
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-primary">Login</button>
+                <button
+                  className="btn btn-primary"
+                  onClick={handleSubmit(signInSubmit)}
+                >
+                  Login
+                </button>
               </div>
             </div>
           </div>

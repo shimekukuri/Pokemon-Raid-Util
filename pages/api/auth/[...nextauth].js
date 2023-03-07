@@ -23,6 +23,7 @@ export default NextAuth({
   providers: [
     CredentialsProvider({
       async authorize(credentials) {
+        console.log(credentials);
         try {
           await db.connect();
           const user = await User.findOne({

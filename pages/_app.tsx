@@ -15,7 +15,13 @@ export default function App({
       <ThemeProvider>
         <DrawerProvider>
           <WebSocketProvider>
-            <Component {...pageProps} />
+            {Component.auth ? (
+              <Auth>
+                <Component {...pageProps} />
+              </Auth>
+            ) : (
+              <Component {...pageProps} />
+            )}
           </WebSocketProvider>
         </DrawerProvider>
       </ThemeProvider>
@@ -28,7 +34,7 @@ function Auth({ children }) {
   const { status } = useSession({
     required: true,
     onUnauthenticated() {
-      router.push('/unauthorized?message=login required');
+      router.push('/');
     },
   });
   if (status === 'loading') {

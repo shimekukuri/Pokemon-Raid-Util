@@ -1,6 +1,7 @@
 import { drawerContext } from '@/Context/drawerContext';
 import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
+import { signOut, useSession } from 'next-auth/react';
 
 export default function Navbar({ title }: { title: string }) {
   const { dState, setDSTate } = useContext(drawerContext);
@@ -11,7 +12,7 @@ export default function Navbar({ title }: { title: string }) {
       <div className="flex-1">
         <a
           className="btn btn-ghost normal-case text-xl"
-          onClick={() => router.push('/')}
+          onClick={() => router.push('/home')}
         >
           {title}
         </a>
@@ -36,7 +37,7 @@ export default function Navbar({ title }: { title: string }) {
             <li>
               <a>Settings</a>
             </li>
-            <li>
+            <li onClick={() => signOut()}>
               <a>Logout</a>
             </li>
           </ul>
