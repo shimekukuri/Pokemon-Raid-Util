@@ -26,10 +26,10 @@ export default function Home() {
           alt="home"
         ></img> */}
       </div>
-      <div className="col-span-2 w-full">
+      <div className="col-span-2 w-full p-4">
         <NewsCard_1 />
       </div>
-      <div>
+      <div className="p-4">
         <div className="card card-compact w-full bg-base-100 shadow-xl flex justify-center">
           <figure>
             <img
@@ -50,7 +50,7 @@ export default function Home() {
           alt="home"
         ></img> */}
       </div>
-      <div className="col-span-2">
+      <div className="col-span-2 p-4">
         <NewsCard_1 />
       </div>
     </Layout>
