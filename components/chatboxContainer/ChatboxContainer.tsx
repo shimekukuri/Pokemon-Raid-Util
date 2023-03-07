@@ -85,7 +85,7 @@ export default function ChatBoxContainer() {
       {state.chatbox ? (
         <div
           className="flex items-end overflow-x-scroll max-w-full gap-2 flex-row-reverse"
-          style={{ maxWidth: '90%', scrollSnapType: 'x mandatory' }}
+          style={{ scrollSnapType: 'x mandatory' }}
         >
           <Chatbox user="0" messages={['meep', 'yolo', 'swag']} />
           {chatStates.map((x) => {
@@ -105,7 +105,7 @@ export default function ChatBoxContainer() {
 
       {state.friends ? (
         <div
-          className="flex items-end overflow-x-scroll gap-2 flex-row-reverse max-w-full"
+          className="flex items-end overflow-x-scroll gap-2 flex-row-reverse max-w-full "
           style={{ scrollSnapType: 'x mandatory' }}
         >
           {[...Array(10)].map((x, i) => {
