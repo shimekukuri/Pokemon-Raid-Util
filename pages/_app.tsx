@@ -15,13 +15,16 @@ export default function App({
       <ThemeProvider>
         <DrawerProvider>
           <WebSocketProvider>
-            {Component.auth ? (
-              <Auth>
+            {
+              //@ts-expect-error
+              Component.auth ? (
+                <Auth>
+                  <Component {...pageProps} />
+                </Auth>
+              ) : (
                 <Component {...pageProps} />
-              </Auth>
-            ) : (
-              <Component {...pageProps} />
-            )}
+              )
+            }
           </WebSocketProvider>
         </DrawerProvider>
       </ThemeProvider>
