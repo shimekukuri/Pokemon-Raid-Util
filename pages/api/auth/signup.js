@@ -7,6 +7,10 @@ const handler = async (req, res) => {
   if (req.method !== 'POST') {
     return;
   }
+  //test
+  res.status(200).JSON({ message: 'endpoint works' });
+  return;
+  //test
   const { name, email, password } = req.body;
   console.log(name, email, password);
   if (
