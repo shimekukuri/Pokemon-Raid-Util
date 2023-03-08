@@ -4,6 +4,7 @@ interface mongooseConnection {
   isConnected?: ConnectionStates;
 }
 
+mongoose.set('strictQuery', true);
 const connection: mongooseConnection = {};
 
 export const connect = async () => {
@@ -21,7 +22,6 @@ export const connect = async () => {
     await mongoose.disconnect();
   }
   const db = await mongoose.connect(process.env.MONGODB_URI);
-  db.set('strictQuery', false);
   console.log(process.env.MONGODB_URI);
   connection.isConnected = db.connections[0].readyState;
 };
