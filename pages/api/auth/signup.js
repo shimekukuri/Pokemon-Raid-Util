@@ -22,9 +22,11 @@ const handler = async (req, res) => {
     return;
   }
   await db.connect();
+  console.log();
+  console.log(db);
 
   const existingUser = await User.findOne({ email: email });
-
+  console.log(existingUser);
   if (existingUser) {
     res.status(422).json({ message: 'User exists already! ' });
     await db.disconnect();
@@ -36,7 +38,7 @@ const handler = async (req, res) => {
     email,
     password: bcryptjs.hashSync(password),
   });
-
+  console.log(newUser);
   const user = await newUser.save();
   await db.disconnect();
   res.status(201).send({
