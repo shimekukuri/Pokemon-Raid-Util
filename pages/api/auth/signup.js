@@ -3,7 +3,7 @@ import User from '../../../models/User';
 import db from '../../../utilities/db/db';
 
 const handler = async (req, res) => {
-  console.log(res.method, res.body);
+  console.log(req.method, req.body);
   if (req.method !== 'POST') {
     return;
   }
