@@ -3,12 +3,10 @@ import User from '../../../models/User';
 import db from '../../../utilities/db/db';
 
 const handler = async (req, res) => {
-  console.log(req.method, req.body);
   if (req.method !== 'POST') {
     return;
   }
   const { name, email, password } = req.body;
-  console.log(name, email, password);
   if (
     !name ||
     !email ||
@@ -37,9 +35,10 @@ const handler = async (req, res) => {
     email,
     password: bcryptjs.hashSync(password),
   });
-  console.log(newUser);
+
   const user = await newUser.save();
   await db.disconnect();
+
   res.status(201).send({
     message: 'Created user!',
     _id: user._id,
