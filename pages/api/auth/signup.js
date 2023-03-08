@@ -3,7 +3,9 @@ import User from '../../../models/User';
 import db from '../../../utilities/db/db';
 
 const handler = async (req, res) => {
+  await db.connect();
   if (req.method !== 'POST') {
+    db.disconnect();
     return;
   }
   const { name, email, password } = req.body;
@@ -17,18 +19,10 @@ const handler = async (req, res) => {
     res.status(422).json({
       message: 'Validation error',
     });
+    db.disconnect();
     return;
   }
-  console.log('after', process.env.MONGODB_URI);
-  try {
-    await db.connect();
-  } catch (e) {
-    console.log(e);
-    return;
-  }
-  console.log('dbExists');
   const existingUser = await User.findOne({ email: email });
-  console.log(existingUser);
   if (existingUser) {
     res.status(422).json({ message: 'User exists already! ' });
     await db.disconnect();
