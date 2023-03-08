@@ -21,9 +21,14 @@ export const connect = async () => {
     }
     await mongoose.disconnect();
   }
-  const db = await mongoose.connect(process.env.MONGODB_URI);
+  try {
+    const db = await mongoose.connect(process.env.MONGODB_URI);
+    connection.isConnected = db.connections[0].readyState;
+  } catch (err) {
+    console.error(err);
+  }
+
   console.log(process.env.MONGODB_URI);
-  connection.isConnected = db.connections[0].readyState;
 };
 
 const disconnect = async () => {
