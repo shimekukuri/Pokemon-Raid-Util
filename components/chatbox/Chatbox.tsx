@@ -16,7 +16,7 @@ export default function ChatboxController({
   const { themeState } = useContext(themeContext);
   const { ws }: { ws: React.MutableRefObject<any> } =
     useContext(webSocketContext);
-  const [localMessages, setLocalMessages] = useState<String>();
+  const [localMessages, setLocalMessages] = useState<string>();
 
   let w: WebSocket = ws.current;
 
