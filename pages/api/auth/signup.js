@@ -7,6 +7,7 @@ const handler = async (req, res) => {
   if (req.method !== 'POST') {
     return;
   }
+
   //test
   res.status(200).JSON({ message: 'endpoint works' });
   return;
