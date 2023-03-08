@@ -3,7 +3,7 @@ import User from '../../../models/User';
 import db from '../../../utilities/db/db';
 
 const handler = async (req, res) => {
-  console.log(db);
+  console.log(process.env.MONGO_URI);
   await db.connect();
   if (req.method !== 'POST') {
     db.disconnect();
