@@ -22,6 +22,7 @@ export const connect = async () => {
   }
   const db = await mongoose.connect(process.env.MONGODB_URI);
   db.set('strictQuery', false);
+  console.log(process.env.MONGODB_URI);
   connection.isConnected = db.connections[0].readyState;
 };
 

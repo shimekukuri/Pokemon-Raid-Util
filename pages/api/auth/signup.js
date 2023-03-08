@@ -21,7 +21,7 @@ const handler = async (req, res) => {
   }
   console.log('after');
   await db.connect();
-  console.log(db);
+  console.log('dbExists');
   const existingUser = await User.findOne({ email: email });
   console.log(existingUser);
   if (existingUser) {
