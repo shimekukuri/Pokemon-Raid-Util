@@ -38,7 +38,9 @@ export default function Hero({ background }: { background?: string }) {
           email: email,
           password: password,
         }),
-      }).then((m) => m.json());
+      })
+        .then((m) => m.json())
+        .then((r) => console.log(r));
 
       console.log(meep);
 
