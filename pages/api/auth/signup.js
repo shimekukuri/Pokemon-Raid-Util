@@ -19,7 +19,7 @@ const handler = async (req, res) => {
     });
     return;
   }
-  console.log('after');
+  console.log('after', process.env.MONGODB_URI);
   await db.connect();
   console.log('dbExists');
   const existingUser = await User.findOne({ email: email });
