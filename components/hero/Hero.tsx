@@ -40,6 +40,8 @@ export default function Hero({ background }: { background?: string }) {
         }),
       }).then((m) => m.json());
 
+      console.log(meep);
+
       const result = await signIn('credentials', {
         redirect: false,
         email,
