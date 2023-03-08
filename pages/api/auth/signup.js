@@ -21,6 +21,7 @@ const handler = async (req, res) => {
     });
     return;
   }
+  console.log('after');
   await db.connect();
 
   const existingUser = await User.findOne({ email: email });
