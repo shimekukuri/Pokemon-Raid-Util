@@ -3,6 +3,7 @@ import User from '../../../models/User';
 import db from '../../../utilities/db/db';
 
 const handler = async (req, res) => {
+  console.log(db);
   await db.connect();
   if (req.method !== 'POST') {
     db.disconnect();
