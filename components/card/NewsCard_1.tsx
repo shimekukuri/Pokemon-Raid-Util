@@ -2,10 +2,10 @@ import React from 'react';
 
 export default function NewsCard_1() {
   return (
-    <div className="card card-compact w-full bg-base-100 shadow-xl">
+    <div className="card card-compact flex-1 bg-base-100 shadow-xl">
       <figure>
         <img
-          src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
+          src="https://wallpapers.com/images/featured/qmcgnudvclph45ia.jpg"
           alt="Shoes"
         />
       </figure>
