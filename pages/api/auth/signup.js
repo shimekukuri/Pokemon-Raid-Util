@@ -3,15 +3,10 @@ import User from '../../../models/User';
 import db from '../../../utilities/db/db';
 
 const handler = async (req, res) => {
-  console.log('fired');
+  console.log(res.method, res.body);
   if (req.method !== 'POST') {
     return;
   }
-
-  //test
-  res.status(200).JSON({ message: 'endpoint works' });
-  return;
-  //test
   const { name, email, password } = req.body;
   console.log(name, email, password);
   if (
