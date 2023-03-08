@@ -6,7 +6,7 @@ const handler = async (req, res) => {
   console.log(process.env.MONGODB_URI);
   await db.connect();
   if (req.method !== 'POST') {
-    db.disconnect();
+    await db.disconnect();
     return;
   }
   const { name, email, password } = req.body;
@@ -20,7 +20,7 @@ const handler = async (req, res) => {
     res.status(422).json({
       message: 'Validation error',
     });
-    db.disconnect();
+    await db.disconnect();
     return;
   }
   const existingUser = await User.findOne({ email: email });
