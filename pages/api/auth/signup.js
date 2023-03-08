@@ -20,7 +20,12 @@ const handler = async (req, res) => {
     return;
   }
   console.log('after', process.env.MONGODB_URI);
-  await db.connect();
+  try {
+    await db.connect();
+  } catch (e) {
+    console.log(e);
+    return;
+  }
   console.log('dbExists');
   const existingUser = await User.findOne({ email: email });
   console.log(existingUser);
