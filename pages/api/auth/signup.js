@@ -3,7 +3,7 @@ import User from '../../../models/User';
 import db from '../../../utilities/db/db';
 
 const handler = async (req, res) => {
-  res.status(200).send({ message: 'received' });
+  res.status(200).send({ req: { body: req.body, method: req.method } });
   // console.log(req.method, req.body);
   // if (req.method !== 'POST') {
   //   return;
