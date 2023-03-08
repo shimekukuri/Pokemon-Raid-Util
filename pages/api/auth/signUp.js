@@ -3,10 +3,12 @@ import User from '../../../models/User';
 import db from '../../../utilities/db/db';
 
 const handler = async (req, res) => {
+  console.log('fired');
   if (req.method !== 'POST') {
     return;
   }
   const { name, email, password } = req.body;
+  console.log(name, email, password);
   if (
     !name ||
     !email ||
