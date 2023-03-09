@@ -16,18 +16,22 @@ const testData: tData[] = [
   { colSpan: 1 },
   { colSpan: 1 },
   { colSpan: 1 },
+  { colSpan: 2 },
+  { colSpan: 2 },
+  { colSpan: 2 },
+  { colSpan: 2 },
+  { colSpan: 2 },
+  { colSpan: 1 },
+  { colSpan: 3 },
+  { colSpan: 1 },
+  { colSpan: 1 },
+  { colSpan: 1 },
+  { colSpan: 2 },
   { colSpan: 1 },
   { colSpan: 1 },
   { colSpan: 1 },
   { colSpan: 1 },
-  { colSpan: 1 },
-  { colSpan: 1 },
-  { colSpan: 1 },
-  { colSpan: 1 },
-  { colSpan: 1 },
-  { colSpan: 1 },
-  { colSpan: 1 },
-  { colSpan: 1 },
+  { colSpan: 3 },
   { colSpan: 1 },
   { colSpan: 1 },
   { colSpan: 1 },
@@ -36,12 +40,28 @@ const testData: tData[] = [
   { colSpan: 1 },
   { colSpan: 3 },
   { colSpan: 1 },
+  { colSpan: 1 },
+  { colSpan: 1 },
+  { colSpan: 1 },
+  { colSpan: 1 },
   { colSpan: 2 },
   { colSpan: 2 },
   { colSpan: 1 },
   { colSpan: 3 },
+  { colSpan: 3 },
+  { colSpan: 3 },
+  { colSpan: 3 },
   { colSpan: 2 },
   { colSpan: 3 },
+  { colSpan: 2 },
+  { colSpan: 2 },
+  { colSpan: 2 },
+  { colSpan: 2 },
+  { colSpan: 2 },
+  { colSpan: 2 },
+  { colSpan: 2 },
+  { colSpan: 2 },
+  { colSpan: 2 },
   { colSpan: 2 },
   { colSpan: 3 },
 ];
@@ -98,7 +118,13 @@ export default function Home() {
   const [prevPost, setPrevPost] = useState<number>();
   const [storedPost, setStoredPost] = useState([]);
 
-  const PostContainer = ({ className, children }) => {
+  const PostContainer = ({
+    className,
+    children,
+  }: {
+    className?: string;
+    children: any;
+  }) => {
     // const arr = className.split(' ').filter((x) => x !== '');
 
     // const test = arr[arr.length - 1];
@@ -122,41 +148,70 @@ export default function Home() {
   return (
     <Layout>
       {sortData(testData).map((x, i) => {
-        if (x.length === 2) {
-          console.log(x);
-          return (
-            <>
-              <PostContainer className={`md:col-span-${x[0].colSpan}`}>
-                <NewsCard_1 />
-              </PostContainer>
-              {x[1].length === 3 ? (
-                <div className="grid grid-rows-3">
-                  {x[1].map((x, i) => (
-                    <PostContainer key={i + 'meep'} className={``}>
-                      <NewsCard_1 />
-                    </PostContainer>
-                  ))}
-                </div>
-              ) : x[1].length === 4 ? (
-                <div className="grid grid-col-2 grid-rows-2 col-span-2">
-                  {x[1].map((x, i) => (
-                    <PostContainer key={i + 'meep'} className={``}>
-                      <NewsCard_1 />
-                    </PostContainer>
-                  ))}
-                </div>
-              ) : (
-                ''
-              )}
+        console.log(x);
+        console.log(x[0], x[1]);
 
-              <PostContainer className={`md:col-span-${x[1].colSpan}`}>
-                <NewsCard_1 />
+        if (
+          typeof x[0] === 'object' &&
+          x[0].colSpan === 3 &&
+          x[1].length === 3
+        ) {
+          return (
+            <div key={'news' + i} className={`col-span-4 grid grid-cols-4`}>
+              <PostContainer className="col-span-3">
+                <NewsCard_1></NewsCard_1>
               </PostContainer>
-            </>
+              <div className="grid-rows-3">
+                {x[1].map((x, ii) => {
+                  return (
+                    <PostContainer key={'col' + i + ii} className="">
+                      <NewsCard_1></NewsCard_1>
+                    </PostContainer>
+                  );
+                })}
+              </div>
+            </div>
           );
         }
+
+        if (
+          typeof x[0] === 'object' &&
+          x[0].colSpan === 2 &&
+          x[1].length === 4
+        ) {
+          return (
+            <div key={'news' + i} className={`col-span-4 grid grid-cols-4`}>
+              <PostContainer className="col-span-2">
+                <NewsCard_1></NewsCard_1>
+              </PostContainer>
+              <div className=" col-span-2 grid grid-rows-2 grid-cols-2">
+                {x[1].map((x, ii) => {
+                  return (
+                    <PostContainer key={'col' + i + ii} className="">
+                      <NewsCard_1></NewsCard_1>
+                    </PostContainer>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        }
+
+        if (typeof x[0] === 'object' && typeof x[1] === 'object') {
+          return (
+            <div key={'news' + i} className="col-span-4 grid grid-cols-4">
+              <PostContainer className="col-span-2">
+                <NewsCard_1></NewsCard_1>
+              </PostContainer>
+              <PostContainer className="col-span-2">
+                <NewsCard_1></NewsCard_1>
+              </PostContainer>
+            </div>
+          );
+        }
+
         return (
-          <PostContainer key={i} className={``}>
+          <PostContainer key={i}>
             <NewsCard_1 />
           </PostContainer>
         );
