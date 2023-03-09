@@ -34,6 +34,8 @@ const handler = async (req, res) => {
     name,
     email,
     password: bcryptjs.hashSync(password),
+    bio: 'test',
+    image: Math.floor(Math.random() * (1008 - 1) + 1),
   });
 
   const user = await newUser.save();

@@ -8,7 +8,9 @@ export interface user {
   rating: number;
   banned: boolean;
   confirmedPokemon: string[];
+  bio: string;
   friends: string[];
+  posts: string[];
 }
 
 const Schema = mongoose.Schema;
@@ -22,6 +24,7 @@ const userSchema = new Schema<user>(
     rating: { type: Number, required: true, default: 3 },
     banned: { type: Boolean, default: false },
     confirmedPokemon: { type: [String], default: [] },
+    bio: { type: String, required: true, default: '' },
     friends: {
       type: [
         {
@@ -30,6 +33,10 @@ const userSchema = new Schema<user>(
           id: { type: String },
         },
       ],
+      default: [],
+    },
+    posts: {
+      type: [{ slug: String }],
       default: [],
     },
   },

@@ -6,6 +6,7 @@ import { signOut, useSession } from 'next-auth/react';
 export default function Navbar({ title }: { title: string }) {
   const { dState, setDSTate } = useContext(drawerContext);
   const router = useRouter();
+  const session = useSession();
 
   return (
     <div className="navbar bg-base-100">
@@ -29,7 +30,12 @@ export default function Navbar({ title }: { title: string }) {
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <a className="justify-between">
+              <a
+                className="justify-between"
+                onClick={() =>
+                  router.push(`/profile/${session.data.user.name}`)
+                }
+              >
                 Profile
                 <span className="badge">New</span>
               </a>

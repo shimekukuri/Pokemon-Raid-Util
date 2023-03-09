@@ -3,7 +3,7 @@ import db from '@/utilities/db/db';
 import User from '@/models/User';
 import Layout from '@/components/Layout/Layout';
 
-export default function IDID({ user }) {
+export default function Aritcle({ user }) {
   console.log(user);
   return (
     <Layout>
@@ -26,16 +26,5 @@ export async function getServerSideProps(context) {
     return { props: { user: `Not Found` } };
   }
 
-  return {
-    props: {
-      user: {
-        friends: data.friends,
-        bio: data.bio,
-        posts: data.posts,
-        rating: data.rating,
-        confirmedPokemon: data.confirmedPokemon,
-        image: data.image,
-      },
-    },
-  };
+  return { props: { user: { _id: data._id, friends: data.friends } } };
 }
