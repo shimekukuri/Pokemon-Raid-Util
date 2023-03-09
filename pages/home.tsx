@@ -1,6 +1,8 @@
 import Layout from '@/components/Layout/Layout';
 import React, { Children, useEffect, useState } from 'react';
 import NewsCard_1 from '@/components/card/NewsCard_1';
+import HeroHome from '@/components/hero/HeroHome';
+import Hero from '@/components/hero/Hero';
 
 interface tData {
   colSpan: number;
@@ -147,6 +149,8 @@ export default function Home() {
 
   return (
     <Layout>
+      <HeroHome />
+
       {sortData(testData).map((x, i) => {
         console.log(x);
         console.log(x[0], x[1]);
@@ -156,22 +160,49 @@ export default function Home() {
           x[0].colSpan === 3 &&
           x[1].length === 3
         ) {
-          return (
-            <div key={'news' + i} className={`col-span-4 grid grid-cols-4`}>
-              <PostContainer className="col-span-3">
-                <NewsCard_1></NewsCard_1>
-              </PostContainer>
-              <div className="grid-rows-3">
-                {x[1].map((x, ii) => {
-                  return (
-                    <PostContainer key={'col' + i + ii} className="">
-                      <NewsCard_1></NewsCard_1>
-                    </PostContainer>
-                  );
-                })}
+          const r = Math.floor(Math.random() * 100) % 2;
+
+          if (r) {
+            return (
+              <div
+                key={'news' + i}
+                className={`col-span-4 grid md:grid-cols-4`}
+              >
+                <PostContainer className="col-span-3">
+                  <NewsCard_1></NewsCard_1>
+                </PostContainer>
+                <div className="md:grid-rows-3">
+                  {x[1].map((x, ii) => {
+                    return (
+                      <PostContainer key={'col' + i + ii} className="">
+                        <NewsCard_1></NewsCard_1>
+                      </PostContainer>
+                    );
+                  })}
+                </div>
               </div>
-            </div>
-          );
+            );
+          } else {
+            return (
+              <div
+                key={'news' + i}
+                className={`col-span-4 grid md:grid-cols-4`}
+              >
+                <div className="md:-rows-3">
+                  {x[1].map((x, ii) => {
+                    return (
+                      <PostContainer key={'col' + i + ii} className="">
+                        <NewsCard_1></NewsCard_1>
+                      </PostContainer>
+                    );
+                  })}
+                </div>
+                <PostContainer className="col-span-3">
+                  <NewsCard_1></NewsCard_1>
+                </PostContainer>
+              </div>
+            );
+          }
         }
 
         if (
@@ -179,27 +210,54 @@ export default function Home() {
           x[0].colSpan === 2 &&
           x[1].length === 4
         ) {
-          return (
-            <div key={'news' + i} className={`col-span-4 grid grid-cols-4`}>
-              <PostContainer className="col-span-2">
-                <NewsCard_1></NewsCard_1>
-              </PostContainer>
-              <div className=" col-span-2 grid grid-rows-2 grid-cols-2">
-                {x[1].map((x, ii) => {
-                  return (
-                    <PostContainer key={'col' + i + ii} className="">
-                      <NewsCard_1></NewsCard_1>
-                    </PostContainer>
-                  );
-                })}
+          const r = Math.floor(Math.random() * 100) % 2;
+
+          if (r) {
+            return (
+              <div
+                key={'news' + i}
+                className={`col-span-4 grid md:grid-cols-4`}
+              >
+                <PostContainer className="col-span-2">
+                  <NewsCard_1></NewsCard_1>
+                </PostContainer>
+                <div className=" col-span-2 grid md:grid-rows-2 md:grid-cols-2">
+                  {x[1].map((x, ii) => {
+                    return (
+                      <PostContainer key={'col' + i + ii} className="">
+                        <NewsCard_1></NewsCard_1>
+                      </PostContainer>
+                    );
+                  })}
+                </div>
               </div>
-            </div>
-          );
+            );
+          } else {
+            return (
+              <div
+                key={'news' + i}
+                className={`col-span-4 grid md:grid-cols-4`}
+              >
+                <div className=" col-span-2 grid md:grid-rows-2 grid-cols-2">
+                  {x[1].map((x, ii) => {
+                    return (
+                      <PostContainer key={'col' + i + ii} className="">
+                        <NewsCard_1></NewsCard_1>
+                      </PostContainer>
+                    );
+                  })}
+                </div>
+                <PostContainer className="col-span-2">
+                  <NewsCard_1></NewsCard_1>
+                </PostContainer>
+              </div>
+            );
+          }
         }
 
         if (typeof x[0] === 'object' && typeof x[1] === 'object') {
           return (
-            <div key={'news' + i} className="col-span-4 grid grid-cols-4">
+            <div key={'news' + i} className="col-span-4 grid md:grid-cols-4">
               <PostContainer className="col-span-2">
                 <NewsCard_1></NewsCard_1>
               </PostContainer>
@@ -211,9 +269,11 @@ export default function Home() {
         }
 
         return (
-          <PostContainer key={i}>
-            <NewsCard_1 />
-          </PostContainer>
+          <div key={i} className="sm:col-span-4 md:col-span-1">
+            <PostContainer>
+              <NewsCard_1 />
+            </PostContainer>
+          </div>
         );
       })}
     </Layout>
