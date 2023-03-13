@@ -1,38 +1,41 @@
 import { useReducer } from 'react';
 import Cookies from 'js-cookie';
+import { user } from '@/models/User';
 
-const ACTIONS = {
+export const USER_ACTIONS = {
   SET_DB_STATE: 'SET_DB_STATE',
   UPDATE_FRIENDS: 'UPDATE_FRIENDS',
 };
 
-const defaultState = Cookies.get('userState')
+const defaultState: user = Cookies.get('userState')
   ? { loggedIn: true, userState: JSON.parse(Cookies.get('userState')) }
   : {
-      loggedIn: false,
-      userState: {
-        name: '',
-        rating: 0,
-        image: 1,
-        banned: false,
-        confirmedPokemon: [],
-        friends: [],
-      },
+      name: '',
+      password: '',
+      email: '',
+      image: 1,
+      rating: 0,
+      banned: false,
+      confirmedPokemon: [],
+      bio: '',
+      friends: [],
+      posts: [],
     };
 
-const reducerFunction = (state, action) => {
+const reducerFunction = (state: user, action): user => {
   switch (action.type) {
-    case ACTIONS.SET_DB_STATE: {
-      return { loggedIn: true, userState: action.payload };
-    }
-    case ACTIONS.UPDATE_FRIENDS: {
+    case USER_ACTIONS.UPDATE_FRIENDS: {
       return {
         ...state,
-        userState: {
-          ...state.userState,
-          friends: [...state.userState.friends, action.payload],
-        },
+        friends: [...state.friends, action.payload],
       };
     }
   }
 };
+
+export default function UserState() {
+  const [userState, userDispatch] = useReducer(
+    reducerFunction,
+    defaultState as user
+  );
+}
