@@ -46,7 +46,7 @@ export default function Drawer({
           >
             Close
           </button>
-          <li onClick={() => router.push('/')}>
+          <li onClick={() => router.push('/home')}>
             <a>Home</a>
           </li>
           {drawerItems
