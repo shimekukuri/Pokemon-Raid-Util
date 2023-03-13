@@ -26,7 +26,7 @@ export default function Layout({ children }: { children: ReactNode }) {
     }
     return arr;
   };
-  console.log(session.data.user.name);
+  console.log(session.data?.user.name);
 
   const drawerFooter = (
     <Select
