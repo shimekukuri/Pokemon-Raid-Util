@@ -9,6 +9,7 @@ import {
   socketStateInterface,
   chatInstance,
 } from '@/Context/websocketContext';
+import Card1 from '../card/Card1';
 
 export interface cbstate {
   menu: boolean;
@@ -108,6 +109,20 @@ export default function ChatBoxContainer() {
           className="flex items-end overflow-x-scroll gap-2 flex-row-reverse max-w-full "
           style={{ scrollSnapType: 'x mandatory' }}
         >
+          <div>
+            <div className="card w-96 flex-1 glass snap-end">
+              <figure>
+                <img src="" alt="car!" />
+              </figure>
+              <div className="card-body">
+                <h2 className="card-title">Life hack</h2>
+                <p>How to park your car at your garage?</p>
+                <div className="card-actions justify-end">
+                  <button className="btn btn-primary">Learn now!</button>
+                </div>
+              </div>
+            </div>
+          </div>
           {[...Array(10)].map((x, i) => {
             return (
               <div key={`test${i}`} className={`snap-end`}>
