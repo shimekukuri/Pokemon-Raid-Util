@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app';
 import DrawerProvider from '@/Context/drawerContext';
 import ThemeProvider from '@/Context/themeContext';
 import WebSocketProvider from '@/Context/websocketContext';
+import UserStateProvider from '@/utilities/userState/UserReducer';
 import { useRouter } from 'next/router';
 import { SessionProvider, useSession } from 'next-auth/react';
 
@@ -15,16 +16,18 @@ export default function App({
       <ThemeProvider>
         <DrawerProvider>
           <WebSocketProvider>
-            {
-              //@ts-expect-error
-              Component.auth ? (
-                <Auth>
+            <UserStateProvider>
+              {
+                //@ts-expect-error
+                Component.auth ? (
+                  <Auth>
+                    <Component {...pageProps} />
+                  </Auth>
+                ) : (
                   <Component {...pageProps} />
-                </Auth>
-              ) : (
-                <Component {...pageProps} />
-              )
-            }
+                )
+              }
+            </UserStateProvider>
           </WebSocketProvider>
         </DrawerProvider>
       </ThemeProvider>
