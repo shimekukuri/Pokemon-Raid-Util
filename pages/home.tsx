@@ -152,9 +152,6 @@ export default function Home() {
       <HeroHome />
 
       {sortData(testData).map((x, i) => {
-        console.log(x);
-        console.log(x[0], x[1]);
-
         if (
           typeof x[0] === 'object' &&
           x[0].colSpan === 3 &&
