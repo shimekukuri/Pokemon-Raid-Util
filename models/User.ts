@@ -9,7 +9,7 @@ export interface user {
   banned: boolean;
   confirmedPokemon: string[];
   bio: string;
-  friends: string[];
+  friends: any;
   posts: string[];
 }
 

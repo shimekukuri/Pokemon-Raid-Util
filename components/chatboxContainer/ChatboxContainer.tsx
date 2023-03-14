@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useReducer, useState } from 'react';
 import Chatbox from '../chatbox/Chatbox';
 import { drawerContext } from '@/Context/drawerContext';
-import ChatboxController from '../ChatboxController/ChatboxController';
 import { themeContext } from '@/Context/themeContext';
+import { userContext } from '@/utilities/userState/UserReducer';
+import ChatboxController from '../ChatboxController/ChatboxController';
 import Card2 from '../card/Card2';
 import {
   webSocketContext,
@@ -54,6 +55,7 @@ const reducerFunction = (state: cbstate, action): cbstate => {
 export default function ChatBoxContainer() {
   const { dState, setDSTate } = useContext(drawerContext);
   const { themeState } = useContext(themeContext);
+  const { userState, userDispatch } = useContext(userContext);
   const { socketState }: { socketState: socketStateInterface } =
     useContext(webSocketContext);
   const [openChat, setOpenChat] = useState<boolean>(false);
@@ -123,12 +125,9 @@ export default function ChatBoxContainer() {
               </div>
             </div>
           </div>
-          {[...Array(10)].map((x, i) => {
-            return (
-              <div key={`test${i}`} className={`snap-end`}>
-                <Card2 />
-              </div>
-            );
+          {userState.friends.map((x, i) => {
+            console.log(x);
+            return <Card2 key={x.name} name={x.name} image={x.image} />;
           })}
         </div>
       ) : (

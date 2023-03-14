@@ -41,6 +41,27 @@ const defaultState: user = Cookies.get('userState')
 const reducerFunction = (state: user, action): user => {
   switch (action.type) {
     case USER_ACTIONS.UPDATE_FRIENDS: {
+      if (state.friends.includes(action.payload)) {
+        return state;
+      }
+
+      fetch('/api/user/updateUser', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          type: 'UPDATE_FRIENDS',
+          payload: {
+            sender: state.email,
+            add: action.payload,
+          },
+        }),
+      })
+        .then((res) => res.json())
+        .then((data) => console.log(data))
+        .catch((err) => console.error(err));
+
       return {
         ...state,
         friends: [...state.friends, action.payload],

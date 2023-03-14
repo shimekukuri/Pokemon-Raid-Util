@@ -10,7 +10,7 @@ import dynamic from 'next/dynamic';
 function IDID({ user }) {
   const { userState, userDispatch } = useContext(userContext);
 
-  const { image, name } = user;
+  const { image, name, email } = user;
   return (
     <Layout>
       <div className="md:col-span-4 flex justify-center">
@@ -103,7 +103,7 @@ function IDID({ user }) {
                       onClick={() =>
                         userDispatch({
                           type: USER_ACTIONS.UPDATE_FRIENDS,
-                          payload: user.name,
+                          payload: user.email,
                         })
                       }
                     >
@@ -130,6 +130,22 @@ export async function getServerSideProps(context) {
 
   await db.connect();
   let data = await User.findOne({ name: id }).lean();
+  if (!data?._id) {
+    return {
+      props: {
+        user: {
+          name: 'Not a User',
+          friends: [],
+          bio: '',
+          posts: [],
+          rating: '',
+          confirmedPokemon: [],
+          image: 1,
+          email: '',
+        },
+      },
+    };
+  }
   // @ts-expect-error
   data._id = data._id.toString();
   console.log(data);
@@ -148,6 +164,7 @@ export async function getServerSideProps(context) {
         rating: data.rating,
         confirmedPokemon: data.confirmedPokemon,
         image: data.image,
+        email: data.email,
       },
     },
   };

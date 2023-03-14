@@ -116,10 +116,6 @@ const sortData = (arr: tData[]): any[] => {
 };
 
 export default function Home() {
-  const [gridLayoutArray, setGridLayoutArray] = useState();
-  const [prevPost, setPrevPost] = useState<number>();
-  const [storedPost, setStoredPost] = useState([]);
-
   const PostContainer = ({
     className,
     children,
