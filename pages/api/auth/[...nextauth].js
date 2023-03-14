@@ -21,7 +21,6 @@ export default NextAuth({
   providers: [
     CredentialsProvider({
       async authorize(credentials) {
-        console.log(credentials);
         try {
           await db.connect();
           const user = await User.findOne({
@@ -36,7 +35,8 @@ export default NextAuth({
               _id: user._id,
               name: user.name,
               email: user.email,
-              iamge: 'f',
+              image: user.image,
+              friends: user.friends,
             };
           }
         } catch {
