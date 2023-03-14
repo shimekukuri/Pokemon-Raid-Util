@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { userContext, USER_ACTIONS } from '@/utilities/userState/UserReducer';
 import db from '@/utilities/db/db';
 import User from '@/models/User';
 import Layout from '@/components/Layout/Layout';
@@ -7,7 +8,8 @@ import Card2 from '@/components/card/Card2';
 import dynamic from 'next/dynamic';
 
 function IDID({ user }) {
-  console.log(user);
+  const { userState, userDispatch } = useContext(userContext);
+
   const { image, name } = user;
   return (
     <Layout>
@@ -97,7 +99,16 @@ function IDID({ user }) {
                   className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
                 >
                   <li>
-                    <a>Item 1</a>
+                    <a
+                      onClick={() =>
+                        userDispatch({
+                          type: USER_ACTIONS.UPDATE_FRIENDS,
+                          payload: user.name,
+                        })
+                      }
+                    >
+                      Add Friend
+                    </a>
                   </li>
                   <li>
                     <a>Item 2</a>
