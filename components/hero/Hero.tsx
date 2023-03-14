@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Oswald, Source_Serif_Pro } from '@next/font/google';
 import Link from 'next/link';
 import { signIn, useSession } from 'next-auth/react';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
+import { userContext } from '@/utilities/userState/UserReducer';
 
 const oswald = Oswald({ weight: '700', subsets: ['latin'] });
 const ssp = Source_Serif_Pro({ weight: '400', subsets: ['latin'] });
@@ -51,6 +52,7 @@ export default function Hero({ background }: { background?: string }) {
       });
       if (result.error) {
         console.log(result.error);
+        return;
       }
     } catch (err) {
       console.error(err);
@@ -69,6 +71,22 @@ export default function Hero({ background }: { background?: string }) {
       }
     } catch (err) {
       console.error(err);
+    }
+
+    if (session) {
+      try {
+        const preState = await fetch('/api/user/get', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email: emailLogin }),
+        })
+          .then((response) => response.json())
+          .then((data) => console.log(data));
+      } catch (err) {
+        console.error(err);
+      }
     }
   };
 
