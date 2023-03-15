@@ -54,7 +54,7 @@ const reducerFunction = (state: user, action): user => {
           type: 'UPDATE_FRIENDS',
           payload: {
             sender: state.email,
-            add: action.payload,
+            add: action.payload.name,
           },
         }),
       })

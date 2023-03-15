@@ -8,7 +8,7 @@ export default function Card2({
   image: number;
 }) {
   return (
-    <div className="card w-72 glass pt-4">
+    <div className="card w-72 glass pt-4 snap-end">
       <figure>
         <div className="rounded-full bg-accent bg-opacity-50">
           <img

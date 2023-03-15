@@ -22,13 +22,13 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
           payload: { add },
         } = req.body;
         console.log(add);
-        const accountToAdd = await User.findOne({ email: add });
+        const accountToAdd = await User.findOne({ name: add });
         console.log(senderAccount);
         senderAccount.friends = [
           ...senderAccount.friends,
           {
             name: accountToAdd.name,
-            image: accountToAdd.image,
+            image: `${accountToAdd.image}`,
             id: `${accountToAdd._id}`,
           },
         ];

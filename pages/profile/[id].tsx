@@ -134,6 +134,7 @@ export async function getServerSideProps(context) {
 
   await db.connect();
   let data = await User.findOne({ name: id }).lean();
+  console.log(`HERE_PLEASE SOMETHING ${data.image}`);
   if (!data?._id) {
     return {
       props: {
@@ -152,7 +153,7 @@ export async function getServerSideProps(context) {
   }
   // @ts-expect-error
   data._id = data._id.toString();
-  console.log(data);
+  console.log(`This line ${data}`);
   await db.disconnect();
   if (!data) {
     return { props: { user: `Not Found` } };
