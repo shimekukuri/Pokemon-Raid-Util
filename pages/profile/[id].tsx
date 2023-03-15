@@ -103,7 +103,11 @@ function IDID({ user }) {
                       onClick={() =>
                         userDispatch({
                           type: USER_ACTIONS.UPDATE_FRIENDS,
-                          payload: user.email,
+                          payload: {
+                            name: user.name,
+                            image: user.image,
+                            id: user.id,
+                          },
                         })
                       }
                     >
@@ -165,6 +169,7 @@ export async function getServerSideProps(context) {
         confirmedPokemon: data.confirmedPokemon,
         image: data.image,
         email: data.email,
+        id: data._id,
       },
     },
   };
