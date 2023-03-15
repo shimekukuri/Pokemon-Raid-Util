@@ -111,7 +111,6 @@ export default function UserStateProvider({
   );
 
   useEffect(() => {
-    console.log(session);
     if (status === 'authenticated') {
       fetch('/api/user/get', {
         method: 'POST',
@@ -146,8 +145,6 @@ export default function UserStateProvider({
   }, [status, session]);
 
   useEffect(() => {
-    console.log(userState);
-    console.log(!checkedLoggedIn(userState));
     if (!checkedLoggedIn(userState)) {
       return;
     }

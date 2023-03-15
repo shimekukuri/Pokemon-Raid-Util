@@ -21,7 +21,7 @@ export default function Card2({
       <div className="card-body">
         <h2 className="card-title">{name}</h2>
         <p>How to park your car at your garage?</p>
-        <div className="card-actions justify-between">
+        <div className="flex items-center flex-nowrap justify-between gap-4">
           <button className="btn btn-primary">Options</button>
           <button className="btn btn-primary">Message</button>
         </div>
