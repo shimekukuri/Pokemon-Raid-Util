@@ -111,14 +111,17 @@ export default function ChatBoxContainer() {
           className="flex items-end overflow-x-scroll gap-2 flex-row-reverse max-w-full "
           style={{ scrollSnapType: 'x mandatory' }}
         >
-          <div>
-            <div className="card w-96 flex-1 glass snap-end">
-              <figure>
-                <img src="" alt="car!" />
-              </figure>
+          <div className="snap-end h-full">
+            <div className="card w-72 glass h-full">
               <div className="card-body">
-                <h2 className="card-title">Life hack</h2>
-                <p>How to park your car at your garage?</p>
+                <h2 className="card-title">Search</h2>
+                <input
+                  type="text"
+                  className="input input-bordered w-full max-w-xs"
+                />
+                <p>
+                  <div></div>
+                </p>
                 <div className="card-actions justify-end">
                   <button className="btn btn-primary">Learn now!</button>
                 </div>

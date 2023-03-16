@@ -163,7 +163,7 @@ export async function getServerSideProps(context) {
     props: {
       user: {
         name: data.name,
-        friends: data.friends,
+        friends: JSON.stringify(data.friends),
         bio: data.bio,
         posts: JSON.stringify(data.posts),
         rating: data.rating,
