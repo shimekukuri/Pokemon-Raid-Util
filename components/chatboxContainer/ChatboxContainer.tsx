@@ -75,6 +75,7 @@ export default function ChatBoxContainer() {
         [instance]: socketState.instances[instance].message,
       });
     }
+    console.log(temp);
     setChatStates(temp);
   }, [socketState]);
 
@@ -111,7 +112,12 @@ export default function ChatBoxContainer() {
           className="flex items-end overflow-x-scroll gap-2 flex-row-reverse max-w-full "
           style={{ scrollSnapType: 'x mandatory' }}
         >
-          <div className="snap-end h-full">
+          <div
+            className="snap-end h-full"
+            style={{
+              minHeight: `${userState.friends.length === 0 ? '400px' : ''}`,
+            }}
+          >
             <div className="card w-72 glass h-full">
               <div className="card-body">
                 <h2 className="card-title">Search</h2>
@@ -130,7 +136,14 @@ export default function ChatBoxContainer() {
           </div>
           {userState.friends.map((x, i) => {
             console.log(x);
-            return <Card2 key={x.name} name={x.name} image={x.image} />;
+            return (
+              <Card2
+                key={x.name}
+                name={x.name}
+                image={x.image}
+                setChatStates={setChatStates}
+              />
+            );
           })}
         </div>
       ) : (

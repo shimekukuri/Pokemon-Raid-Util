@@ -5,12 +5,14 @@ import { signIn, useSession } from 'next-auth/react';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import { userContext } from '@/utilities/userState/UserReducer';
+import { webSocketContext } from '@/Context/websocketContext';
 
 const oswald = Oswald({ weight: '700', subsets: ['latin'] });
 const ssp = Source_Serif_Pro({ weight: '400', subsets: ['latin'] });
 
 export default function Hero({ background }: { background?: string }) {
   const [account, setAccount] = useState(true);
+  const { setReset } = useContext(webSocketContext);
   const { data: session } = useSession();
   const router = useRouter();
 
@@ -54,6 +56,7 @@ export default function Hero({ background }: { background?: string }) {
         console.log(result.error);
         return;
       }
+      setReset((prev) => !prev);
     } catch (err) {
       console.error(err);
     }

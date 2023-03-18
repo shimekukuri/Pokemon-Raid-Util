@@ -11,7 +11,7 @@ export default function Card1({
   buttonText: string;
 }) {
   return (
-    <div className="card max-h-72 shadow-xl bg-base-100 image-full hover:animate-scale-up">
+    <div className="card max-h-72 shadow-xl bg-base-100 image-full hover:animate-scale-up p-2">
       <figure>
         <img src={image} alt="Shoes" />
       </figure>
