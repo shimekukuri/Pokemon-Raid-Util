@@ -3,9 +3,11 @@ import React from 'react';
 export default function Card2({
   name,
   image,
+  setChatStates,
 }: {
   name: string;
   image: number;
+  setChatStates: React.Dispatch<React.SetStateAction<any[]>>;
 }) {
   return (
     <div className="card w-72 glass pt-4 snap-end">

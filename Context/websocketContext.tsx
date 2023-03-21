@@ -41,50 +41,52 @@ export default function WebSocketProvider({
   const { data: session } = useSession();
 
   useEffect(() => {
-    console.log(session);
-    console.log('ws uE fired', !!session);
-    if (session && !connected) {
-      ws.current = new WebSocket('ws://localhost:5555');
-      let w = ws.current as WebSocket;
-      w.onopen = (event) => {};
+    console.log(ws.current);
+    if (!session || connected) return;
+    ws.current = new WebSocket('ws://localhost:5555');
+    let w = ws.current as WebSocket;
+    w.onopen = (event) => {
+      w.send(JSON.stringify({ event: 'register', userID: session.user._id }));
+    };
 
-      w.onmessage = (event) => {
-        let e = JSON.parse(event.data);
-        console.log(e.event);
-        switch (e.event) {
-          case 'register': {
-            w.send(
-              JSON.stringify({ event: 'register', userID: session.user._id })
-            );
-            break;
-          }
-          case 'message': {
-            let temp = { ...socketState };
-            if (!socketState.instances[e.from]) {
-              socketState.instances[e.from] = { message: [] };
-            }
-            temp.instances[e.from].time = Date.now();
+    w.onclose = (event) => {};
 
-            temp.instances[e.from].message = [
-              ...temp.instances[e.from].message,
-              e.message,
-            ];
-            console.log(temp);
-            setSocketState(temp);
-            break;
-          }
-          case 'filterMatch': {
-          }
+    w.onmessage = (event) => {
+      let e = JSON.parse(event.data);
+      console.log(e.event);
+      switch (e.event) {
+        case 'register': {
+          console.log('register switch');
+          break;
         }
-      };
+
+        case 'message': {
+          let temp = { ...socketState };
+          if (!socketState.instances[e.from]) {
+            socketState.instances[e.from] = { message: [] };
+          }
+          temp.instances[e.from].time = Date.now();
+
+          temp.instances[e.from].message = [
+            ...temp.instances[e.from].message,
+            e.message,
+          ];
+          console.log(temp);
+          setSocketState(temp);
+          break;
+        }
+
+        case 'filterMatch': {
+        }
+      }
       setConnected(true);
-    }
+    };
   }, [session]);
 
   const value = {
     socketState,
     ws,
-    setReset,
+    setConnected,
   };
 
   return (

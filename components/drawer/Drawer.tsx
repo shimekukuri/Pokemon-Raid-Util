@@ -2,6 +2,7 @@ import React, { ReactNode, useEffect, useContext } from 'react';
 import { drawerContext } from '@/Context/drawerContext';
 import { themeContext } from '@/Context/themeContext';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 export interface drawerItemsInterface {
   title: string;
@@ -46,14 +47,14 @@ export default function Drawer({
           >
             Close
           </button>
-          <li onClick={() => router.push('/home')}>
-            <a>Home</a>
+          <li>
+            <Link href="/home">Home</Link>
           </li>
           {drawerItems
             ? drawerItems.map(({ title, route }, i) => {
                 return (
-                  <li key={i} onClick={() => router.push(route)}>
-                    <a>{title}</a>
+                  <li key={i}>
+                    <Link href={`/${route}`}>{title}</Link>
                   </li>
                 );
               })

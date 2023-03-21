@@ -94,9 +94,7 @@ export default function ChatBoxContainer() {
           <Chatbox user="0" messages={['meep', 'yolo', 'swag']} />
           {chatStates.map((x) => {
             let keys = Object.keys(x)[0];
-            console.log(keys);
-            console.log(x);
-            console.log(x[keys]);
+            console.log(`user: ${keys}\n`, `messages ${x[keys]}`);
 
             return (
               <Chatbox key={keys + 'user'} user={keys} messages={x[keys]} />

@@ -12,7 +12,7 @@ const ssp = Source_Serif_Pro({ weight: '400', subsets: ['latin'] });
 
 export default function Hero({ background }: { background?: string }) {
   const [account, setAccount] = useState(true);
-  const { setReset } = useContext(webSocketContext);
+  const { setConnected } = useContext(webSocketContext);
   const { data: session } = useSession();
   const router = useRouter();
 
@@ -56,7 +56,7 @@ export default function Hero({ background }: { background?: string }) {
         console.log(result.error);
         return;
       }
-      setReset((prev) => !prev);
+      setConnected((prev) => true);
     } catch (err) {
       console.error(err);
     }
