@@ -43,13 +43,29 @@ export default function WebSocketProvider({
   useEffect(() => {
     console.log(ws.current);
     if (!session || connected) return;
+    console.log(session);
     ws.current = new WebSocket('ws://localhost:5555');
     let w = ws.current as WebSocket;
     w.onopen = (event) => {
-      w.send(JSON.stringify({ event: 'register', userID: session.user._id }));
+      w.send(
+        JSON.stringify({
+          event: 'register',
+          userID: session.user._id,
+          userName: session.user.name,
+        })
+      );
     };
 
-    w.onclose = (event) => {};
+    w.onclose = (event) => {
+      console.log(event);
+      w.send(
+        JSON.stringify({
+          event: 'disconnect',
+          userID: session.user._id,
+          userName: session.user.name,
+        })
+      );
+    };
 
     w.onmessage = (event) => {
       let e = JSON.parse(event.data);

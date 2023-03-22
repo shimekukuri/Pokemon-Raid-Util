@@ -47,7 +47,7 @@ export default function Navbar({ title }: { title: string }) {
             <li>
               <a>Settings</a>
             </li>
-            <li onClick={() => signOut()}>
+            <li onClick={() => signOut({ callbackUrl: '/' })}>
               <a>Logout</a>
             </li>
           </ul>
