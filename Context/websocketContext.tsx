@@ -7,6 +7,7 @@ import React, {
 } from 'react';
 
 import { useSession } from 'next-auth/react';
+import { Session } from 'next-auth';
 
 export const webSocketContext = createContext<any>(null);
 
@@ -27,6 +28,10 @@ export interface socketStateInterface {
   instances?: chatInstance | {};
 }
 
+export interface customSession extends Session {
+  user?: any;
+}
+
 export default function WebSocketProvider({
   children,
 }: {
@@ -38,21 +43,21 @@ export default function WebSocketProvider({
     instances: {},
   });
   const ws = useRef(null);
-  const { data: session } = useSession();
+  const { data }: { data: customSession } = useSession();
+  console.log('data from websocketContext', data);
 
   useEffect(() => {
     console.log(ws.current);
-    if (!session || connected) return;
-    console.log(session);
+    if (!data || connected) return;
+    console.log(data);
     ws.current = new WebSocket('ws://localhost:5555');
     let w = ws.current as WebSocket;
     w.onopen = (event) => {
       w.send(
         JSON.stringify({
           event: 'register',
-          //@ts-ignore
-          userID: session.user._id,
-          userName: session.user.name,
+          userID: data.user._id,
+          userName: data.user.name,
         })
       );
     };
@@ -62,8 +67,8 @@ export default function WebSocketProvider({
       w.send(
         JSON.stringify({
           event: 'disconnect',
-          userID: session.user._id,
-          userName: session.user.name,
+          userID: data.user._id,
+          userName: data.user.name,
         })
       );
     };
@@ -98,7 +103,7 @@ export default function WebSocketProvider({
       }
       setConnected(true);
     };
-  }, [session]);
+  }, [data]);
 
   const value = {
     socketState,
