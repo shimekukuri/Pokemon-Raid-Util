@@ -50,6 +50,7 @@ export default function WebSocketProvider({
       w.send(
         JSON.stringify({
           event: 'register',
+          //@ts-ignore
           userID: session.user._id,
           userName: session.user.name,
         })
