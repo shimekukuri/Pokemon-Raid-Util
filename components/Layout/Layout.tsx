@@ -47,7 +47,7 @@ export default function Layout({ children }: { children: ReactNode }) {
       </Head>
 
       <Drawer drawerItems={drawerItems} footer={drawerFooter}>
-        <div className="min-h-screen bg-secondary flex justify-between flex-col">
+        <div className="min-h-screen bg-secondary flex justify-between flex-col min-w-full overflow-x-hidden">
           <Navbar title="POKEMON RAID UTILITY" />
           <main className="flex-1 px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 2xl:grid-cols-4 mt-4 relative">
             {children}

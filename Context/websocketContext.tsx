@@ -28,6 +28,7 @@ export interface socketStateInterface {
   instances?: chatInstance | {};
 }
 
+//fix this later
 export interface customSession extends Session {
   user?: any;
 }
