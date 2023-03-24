@@ -61,6 +61,7 @@ export default function ChatBoxContainer() {
   const [openChat, setOpenChat] = useState<boolean>(false);
   const [state, dispatch] = useReducer(reducerFunction, initalState as cbstate);
   const [chatStates, setChatStates] = useState([]);
+  const [friendSearch, setFriendSearch] = useState<string>('');
 
   useEffect(() => {
     if (dState) {
@@ -122,6 +123,11 @@ export default function ChatBoxContainer() {
                 <input
                   type="text"
                   className="input input-bordered w-full max-w-xs"
+                  value={friendSearch}
+                  onChange={(e) => {
+                    console.log(friendSearch);
+                    setFriendSearch(e.target.value);
+                  }}
                 />
                 <p>
                   <div></div>

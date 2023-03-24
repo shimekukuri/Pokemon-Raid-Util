@@ -24,7 +24,7 @@ const userSchema = new Schema<user>(
     rating: { type: Number, required: true, default: 3 },
     banned: { type: Boolean, default: false },
     confirmedPokemon: { type: [String], default: [] },
-    bio: { type: String, required: true, default: '' },
+    bio: { type: String, default: '' },
     friends: {
       type: [
         {

@@ -53,6 +53,7 @@ export default function WebSocketProvider({
     console.log(data);
     ws.current = new WebSocket('ws://localhost:5555');
     let w = ws.current as WebSocket;
+
     w.onopen = (event) => {
       w.send(
         JSON.stringify({
@@ -77,12 +78,14 @@ export default function WebSocketProvider({
     w.onmessage = (event) => {
       let e = JSON.parse(event.data);
       console.log(e.event);
+
       switch (e.event) {
         case 'register': {
           console.log('register switch');
           break;
         }
 
+        //chat message cases
         case 'message': {
           let temp = { ...socketState };
           if (!socketState.instances[e.from]) {
@@ -99,7 +102,11 @@ export default function WebSocketProvider({
           break;
         }
 
+        //find users
         case 'filterMatch': {
+        }
+
+        case 'findUser': {
         }
       }
       setConnected(true);
