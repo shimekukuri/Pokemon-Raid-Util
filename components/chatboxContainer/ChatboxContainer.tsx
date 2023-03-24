@@ -138,17 +138,25 @@ export default function ChatBoxContainer() {
               </div>
             </div>
           </div>
-          {userState.friends.map((x, i) => {
-            console.log(x);
-            return (
-              <Card2
-                key={x.name}
-                name={x.name}
-                image={x.image}
-                setChatStates={setChatStates}
-              />
-            );
-          })}
+          {userState.friends
+            .filter((x) => {
+              if (friendSearch === '') return x;
+              console.log(x.name, friendSearch);
+              if (x.name === friendSearch) {
+                return x;
+              }
+            })
+            .map((x, i) => {
+              console.log(x);
+              return (
+                <Card2
+                  key={x.name}
+                  name={x.name}
+                  image={x.image}
+                  setChatStates={setChatStates}
+                />
+              );
+            })}
         </div>
       ) : (
         ''
