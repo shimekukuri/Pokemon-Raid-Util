@@ -1,21 +1,17 @@
-import React, { ReactNode, createContext, useState, useContext } from 'react';
+import React, { ReactNode, useContext } from 'react';
 import Head from 'next/head';
-import { Oswald, Source_Serif_Pro } from '@next/font/google';
+
 import Drawer from '../drawer/Drawer';
-import { drawerContext } from '@/Context/drawerContext';
+
 import Select from '../select/Select';
 import { themeContext } from '@/Context/themeContext';
 import { drawerItems } from '@/Context/drawerUtilitys/drawerItems';
 import Navbar from '../navbar/Navbar';
-import Chatbox from '../chatbox/Chatbox';
 import ChatBoxContainer from '../chatboxContainer/ChatboxContainer';
 import { useSession } from 'next-auth/react';
-
-const oswald = Oswald({ weight: '700', subsets: ['latin'] });
-const ssp = Source_Serif_Pro({ weight: '400', subsets: ['latin'] });
+import EventToast from '../eventToast/EventToast';
 
 export default function Layout({ children }: { children: ReactNode }) {
-  const { dState, setDSTate } = useContext(drawerContext);
   const { themes, themeState, setThemeState } = useContext(themeContext);
   const session = useSession();
 
@@ -47,6 +43,7 @@ export default function Layout({ children }: { children: ReactNode }) {
       </Head>
 
       <Drawer drawerItems={drawerItems} footer={drawerFooter}>
+        <EventToast />
         <div className="min-h-screen bg-secondary flex justify-between flex-col min-w-full overflow-x-hidden">
           <Navbar title="POKEMON RAID UTILITY" />
           <main className="flex-1 px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 2xl:grid-cols-4 mt-4 relative">
