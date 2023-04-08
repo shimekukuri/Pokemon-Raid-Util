@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import React from 'react';
+import React, { useState } from 'react';
 
 export default function Card1({
   title,
@@ -10,8 +10,10 @@ export default function Card1({
   image: string;
   buttonText: string;
 }) {
+  const [thisIsState, setThisisState] = useState();
+
   return (
-    <div className="card max-h-72 shadow-xl bg-base-100 image-full hover:animate-scale-up p-2">
+    <div className="card max-h-72 shadow-xl bg-base-100 image-full hover:animate-scale-up">
       <figure>
         <img src={image} alt="Shoes" />
       </figure>

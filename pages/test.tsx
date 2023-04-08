@@ -29,37 +29,39 @@ export default function Test() {
           <progress className="progress w-56 absolute"></progress>
         </div>
       ) : (
-        [
-          pokedata,
-          pokedata,
-          pokedata,
-          pokedata,
-          pokedata,
-          pokedata,
-          pokedata,
-          pokedata,
-          pokedata,
-          pokedata,
-          pokedata,
-          pokedata,
-          pokedata,
-          pokedata,
-          pokedata,
-          pokedata,
-          pokedata,
-          pokedata,
-          pokedata,
-          pokedata,
-        ].map((x, i) => {
-          return (
-            <Card1
-              key={i}
-              title={'Clafairy'}
-              image={x.body}
-              buttonText="Enter Room"
-            ></Card1>
-          );
-        })
+        <div className="col-span-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 2xl:grid-cols-4 gap-2">
+          {[
+            pokedata,
+            pokedata,
+            pokedata,
+            pokedata,
+            pokedata,
+            pokedata,
+            pokedata,
+            pokedata,
+            pokedata,
+            pokedata,
+            pokedata,
+            pokedata,
+            pokedata,
+            pokedata,
+            pokedata,
+            pokedata,
+            pokedata,
+            pokedata,
+            pokedata,
+            pokedata,
+          ].map((x, i) => {
+            return (
+              <Card1
+                key={i}
+                title={'Clafairy'}
+                image={x.body}
+                buttonText="Enter Room"
+              ></Card1>
+            );
+          })}
+        </div>
       )}
     </Layout>
   );
