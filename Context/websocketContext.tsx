@@ -73,6 +73,7 @@ export default function WebSocketProvider({
           userName: data.user.name,
         })
       );
+      setConnected(false);
     };
 
     w.onmessage = (event) => {
@@ -111,7 +112,7 @@ export default function WebSocketProvider({
       }
       setConnected(true);
     };
-  }, [data]);
+  }, [data, connected]);
 
   const value = {
     socketState,
