@@ -18,8 +18,107 @@ export default function CreateLobby() {
             <div className="bg-primary-focus rounded-t-2xl h-12 px-4 bg-opacity-50">
               y
             </div>
-            <div className="flex-1">y</div>
-            <div className="bg-accent-focus bg-opacity-50 h-28 rounded-b-2xl px-4 py-2">
+            <div className="flex-1">
+              <div className="chat chat-start">
+                <div className="chat-bubble">
+                  It's over Anakin, <br />I have the high ground.
+                </div>
+              </div>
+              <div className="chat chat-end">
+                <div className="chat-bubble">You underestimate my power!</div>
+              </div>
+            </div>
+            <div className="flex-1">
+              <div className="chat chat-start">
+                <div className="chat-bubble">
+                  It's over Anakin, <br />I have the high ground.
+                </div>
+              </div>
+              <div className="chat chat-end">
+                <div className="chat-bubble">You underestimate my power!</div>
+              </div>
+            </div>
+            <div className="flex-1">
+              <div className="chat chat-start">
+                <div className="chat-bubble">
+                  It's over Anakin, <br />I have the high ground.
+                </div>
+              </div>
+              <div className="chat chat-end">
+                <div className="chat-bubble">You underestimate my power!</div>
+              </div>
+            </div>
+            <div className="flex-1">
+              <div className="chat chat-start">
+                <div className="chat-bubble">
+                  It's over Anakin, <br />I have the high ground.
+                </div>
+              </div>
+              <div className="chat chat-end">
+                <div className="chat-bubble">You underestimate my power!</div>
+              </div>
+            </div>
+            <div className="flex-1">
+              <div className="chat chat-start">
+                <div className="chat-bubble">
+                  It's over Anakin, <br />I have the high ground.
+                </div>
+              </div>
+              <div className="chat chat-end">
+                <div className="chat-bubble">You underestimate my power!</div>
+              </div>
+            </div>
+            <div className="flex-1">
+              <div className="chat chat-start">
+                <div className="chat-bubble">
+                  It's over Anakin, <br />I have the high ground.
+                </div>
+              </div>
+              <div className="chat chat-end">
+                <div className="chat-bubble">You underestimate my power!</div>
+              </div>
+            </div>
+            <div className="flex-1">
+              <div className="chat chat-start">
+                <div className="chat-bubble">
+                  It's over Anakin, <br />I have the high ground.
+                </div>
+              </div>
+              <div className="chat chat-end">
+                <div className="chat-bubble">You underestimate my power!</div>
+              </div>
+            </div>
+            <div className="flex-1">
+              <div className="chat chat-start">
+                <div className="chat-bubble">
+                  It's over Anakin, <br />I have the high ground.
+                </div>
+              </div>
+              <div className="chat chat-end">
+                <div className="chat-bubble">You underestimate my power!</div>
+              </div>
+            </div>
+            <div className="flex-1">
+              <div className="chat chat-start">
+                <div className="chat-bubble">
+                  It's over Anakin, <br />I have the high ground.
+                </div>
+              </div>
+              <div className="chat chat-end">
+                <div className="chat-bubble">You underestimate my power!</div>
+              </div>
+            </div>
+            <div className="flex-1">
+              <div className="chat chat-start">
+                <div className="chat-bubble">
+                  It's over Anakin, <br />I have the high ground.
+                </div>
+              </div>
+              <div className="chat chat-end">
+                <div className="chat-bubble">You underestimate my power!</div>
+              </div>
+            </div>
+            <div className="bg-accent-focus bg-opacity-50  h-28 rounded-b-2xl px-4 py-2">
               y
             </div>
           </div>
