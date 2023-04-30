@@ -24,8 +24,15 @@ export interface chatInstance {
   ];
 }
 
+export interface events {
+  image?: string;
+  text: string;
+  timer: any;
+}
+
 export interface socketStateInterface {
   instances?: chatInstance | {};
+  events: events[];
 }
 
 //fix this later
@@ -42,6 +49,7 @@ export default function WebSocketProvider({
   const [connected, setConnected] = useState<boolean>();
   const [socketState, setSocketState] = useState<socketStateInterface>({
     instances: {},
+    events: [],
   });
   const ws = useRef(null);
   const { data }: { data: customSession } = useSession();
@@ -78,7 +86,7 @@ export default function WebSocketProvider({
 
     w.onmessage = (event) => {
       let e = JSON.parse(event.data);
-      console.log(e.event);
+      console.log(e);
 
       switch (e.event) {
         case 'register': {
@@ -105,9 +113,22 @@ export default function WebSocketProvider({
 
         //find users
         case 'filterMatch': {
+          break;
         }
 
         case 'findUser': {
+          break;
+        }
+
+        case 'event': {
+          let temp = { ...socketState };
+          const { image, timer, text } = e.data;
+          const imageCheck: string = image ? image : '';
+
+          temp.events.push({ text: text, image: imageCheck, timer: timer });
+
+          setSocketState(temp);
+          break;
         }
       }
       setConnected(true);
