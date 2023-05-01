@@ -5,11 +5,13 @@ import React from 'react';
 export default function Test2() {
   return (
     <LayoutFlex>
-      <div className="flex-1 max-h-full grid grid-cols-4 gap-4 justify-center items-center w-full">
-        <div className="col-span-1 bg-primary h-full rounded-2xl shadow-xl"></div>
+      <div className="flex-1 max-h-full grid grid-cols-1 md:grid-cols-4 md:gap-4 justify-center items-center w-full">
+        <div className="col-span-1 bg-primary h-full rounded-2xl shadow-xl mb-4 md:mb-0 p-4">
+          f
+        </div>
         <div className="col-span-3 glass min-h-full max-h-full rounded-2xl shadow-xl flex flex-col justify-between">
-          <div className="min-h-12">Test 1</div>
-          <div className="flex-1 max-h-full overflow-y-scroll">
+          <div className="min-h-12 p-4">Test 1</div>
+          <div className="flex-1 max-h-full overflow-y-scroll p-4">
             <div>test</div>
             <div>test</div>
             <div>test</div>
